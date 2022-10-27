@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import logo2ImageUrl from "../../img/logo2.png";
+import { Link } from "react-router-dom";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -11,7 +12,7 @@ export const Home = () => {
       <div class="text-center">
         <img
           src={logo2ImageUrl}
-          className="rounded mt-5"
+          className="rounded mt-4"
           alt="Logo"
           id="imgfondo"
         />
@@ -25,6 +26,13 @@ export const Home = () => {
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum."
           </p>
+        </div>
+        <div className="ml-auto mt-4">
+          <Link to="/demo">
+            <button className="btn btn-info bg-opacity-25 text-white">
+              Biblioteca de razas de perros
+            </button>
+          </Link>
         </div>
       </div>
     </div>
