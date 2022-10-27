@@ -16,7 +16,7 @@ export const Home = () => {
           alt="Logo"
           id="imgfondo"
         />
-        <div className="container mt-4">
+        <div className="container mt-5">
           <p className="text-white mt-2">
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
