@@ -9,7 +9,7 @@ export const Home = () => {
 
   return (
     <div id="fondoHome">
-      <div class="text-center">
+      <div className="text-center">
         <img
           src={logo2ImageUrl}
           className="rounded mt-4"
@@ -28,7 +28,7 @@ export const Home = () => {
           </p>
         </div>
         <div className="ml-auto mt-4">
-          <Link to="/demo">
+          <Link to="/biblioteca">
             <button className="btn btn-info bg-opacity-25 text-white">
               Biblioteca de razas de perros
             </button>
