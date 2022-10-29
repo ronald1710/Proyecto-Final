@@ -27,9 +27,9 @@ export const Home = () => {
             culpa qui officia deserunt mollit anim id est laborum."
           </p>
         </div>
-        <div className="ml-auto mt-4">
+        <div className="ml-auto mt-4 ">
           <Link to="/biblioteca">
-            <button className="btn btn-info bg-opacity-25 text-white">
+            <button className="btn btn-info bg-opacity-25 text-white m-4">
               Biblioteca de razas de perros
             </button>
           </Link>
