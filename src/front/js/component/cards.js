@@ -4,7 +4,7 @@ import logo2ImageUrl from "../../img/logo2.png";
 
 export const Card = () => {
   return (
-    <div className="card mb-3" style={{ maxWidth: 1500 }}>
+    <div className="card mt-3" style={{ maxWidth: 1500 }}>
       <div className="row g-0">
         <div className="col-md-4">
           <img

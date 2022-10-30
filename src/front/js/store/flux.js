@@ -33,7 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const resp = await fetch(
-            "https://3001-ronald1710-proyectofina-twmo84tnbww.ws-us73.gitpod.io/api/token",
+            "https://3001-ronald1710-proyectofina-n1i5q0n2351.ws-us73.gitpod.io/api/token",
             opts
           );
           if (resp.status !== 200) {
