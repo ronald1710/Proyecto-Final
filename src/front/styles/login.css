@@ -1,4 +1,9 @@
 #div_fondo {
-  background-image: url("../img/fondo_login.jpg");
+  /*background: #819a72;*/
+  background-image: url("/workspace/Proyecto-Final/src/front/img/fondo.png");
   height: 490px;
+}
+#imagen_login {
+  width: 50%;
+  height: 50%;
 }

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import fondo_login from "../../img/fondo_login.jpg";
+import imagen_login from "../../img/imagen_login.png";
 import { useNavigate } from "react-router-dom";
 import "../../styles/login.css";
 
@@ -19,24 +19,15 @@ export const Login = () => {
 
   return (
     <div id="div_fondo">
-      <div className="text-center">
-        <h1>Acceso</h1>
-        <div>
-          <input
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={handleClick}>Acceso</button>
-        </div>
+      <div>
+        <img
+          /*src={imagen_login}*/
+          className="img-fluid rounded-start"
+          alt="imagen_login"
+          id="imagen_login"
+        />
       </div>
+      <div></div>
     </div>
   );
 };
