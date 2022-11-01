@@ -1,9 +1,4 @@
 #div_fondo {
-  /*background: #819a72;*/
-  background-image: url("/workspace/Proyecto-Final/src/front/img/fondo.png");
-  height: 490px;
-}
-#imagen_login {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  background-size: 100% 100%;
 }
