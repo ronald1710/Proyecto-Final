@@ -9,6 +9,7 @@ export const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [repeat_password, set_repeatPassword] = useState("");
   const navigate = useNavigate();
   const handleClick = () => {
     actions.signup(email, password).then((resp) => {
@@ -23,11 +24,12 @@ export const Signup = () => {
       id="div_fondo"
       style={{ backgroundImage: `url(${fondo_signup})`, height: "490px" }}
     >
-      <div className="text-left mt ">
+      <div className="text-center" id="div_signup">
         <h1>Registrarse</h1>
         <div>
-          <div>
+          <div className="text-center">
             <input
+              className="m-1 group-text text-center rounded-pill"
               type="text"
               placeholder="Nombre"
               value={name}
@@ -36,6 +38,7 @@ export const Signup = () => {
           </div>
           <div>
             <input
+              className="m-1 group-text text-center rounded-pill"
               type="text"
               placeholder="Email"
               value={email}
@@ -44,6 +47,7 @@ export const Signup = () => {
           </div>
           <div>
             <input
+              className="m-1 group-text text-center rounded-pill"
               type="password"
               placeholder="Constraseña"
               value={password}
@@ -52,13 +56,19 @@ export const Signup = () => {
           </div>
           <div>
             <input
+              className="m-1 group-text text-center rounded-pill"
               type="password"
               placeholder="Repetir constraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={repeat_password}
+              onChange={(e) => set_repeatPassword(e.target.value)}
             />
           </div>
-          <button onClick={handleClick}>Registrarse</button>
+          <button
+            className="btn btn-secondary text-white text-center mt-2"
+            onClick={handleClick}
+          >
+            Registrarse
+          </button>
         </div>
       </div>
     </div>
