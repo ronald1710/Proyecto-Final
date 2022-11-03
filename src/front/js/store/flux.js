@@ -59,6 +59,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
+      signup: (body) => {
+        fetch("/signup", {
+          /* ACA VA LA URL */ method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: body,
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            /*ACA PONEMOS EL ALERTA SI EL REGISTRO FUE EXITOSO  */
+          });
+      },
       changeColor: (index, color) => {
         //get the store
         const store = getStore();
