@@ -45,7 +45,7 @@ class User_dogFavorite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
+    dogs_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     """ user = db.relationship(User)
     dogs = db.relationship(Dogs) """
     
@@ -87,7 +87,7 @@ class Razas_dogs(db.Model):
             "consejos": self.consejos,
             "origen": self.origen,
             "salud": self.salud,
-            "ejericicio": self.ejericicio,
+            "ejercicio": self.ejercicio,
             "aseo": self.aseo,
             "raza_nino": self.raza_nino,
             # do not serialize the password, its a security breach
