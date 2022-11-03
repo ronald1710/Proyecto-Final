@@ -32,10 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
         };
         try {
-          const resp = await fetch(
-            "https://3001-ronald1710-proyectofina-n1i5q0n2351.ws-us73.gitpod.io/api/token",
-            opts
-          );
+          const resp = await fetch(process.env.BACKEND_URL + "/token", opts);
           if (resp.status !== 200) {
             alert("There has been some error");
             return false;
