@@ -87,4 +87,13 @@ def get_razaDogs():
     }
     return jsonify(response_body), 200
 
+@api.route('/razas_dogs/<int:raza_dog_id>', methods=['GET'])
+def get_raza_dog(raza_dog_id):
+    raza_dog = Razas_dogs.query.get(raza_dog_id)
+    if not raza_dog:
+        return jsonify({"msg": "Dog not exists"})
+    response_body = {
+        "Dog": raza_dog
+    }
+    return jsonify(raza_dog.serialize()), 200
 
