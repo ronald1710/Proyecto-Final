@@ -45,7 +45,7 @@ class User_dogFavorite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
+    dogs_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     """ user = db.relationship(User)
     dogs = db.relationship(Dogs) """
     
@@ -65,29 +65,33 @@ class User_dogFavorite(db.Model):
 
 class Razas_dogs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    descripcion = db.Column(db.String(250), nullable=False)
-    consejos = db.Column(db.String(250), nullable=False)
-    origen = db.Column(db.String(250), nullable=False)
-    salud = db.Column(db.String(250), nullable=False)
-    ejercicio = db.Column(db.String(250), nullable=False)
-    aseo = db.Column(db.String(250), nullable=False)
-    raza_nino = db.Column(db.String(250), nullable=False)
+    descripcion = db.Column(db.String(1000), nullable=False)
+    consejos = db.Column(db.String(1000), nullable=False)
+    personalidad = db.Column(db.String(1000), nullable=False)
+    origen = db.Column(db.String(1000), nullable=False)
+    salud = db.Column(db.String(1000), nullable=False)
+    ejercicio = db.Column(db.String(1000), nullable=False)
+    nutricion = db.Column(db.String(1000), nullable=False)
+    aseo = db.Column(db.String(1000), nullable=False)
+    raza_nino = db.Column(db.String(1000), nullable=False)
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     """ dog = db.relationship(Dogs) """
     
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return f'<Razas_dogs {self.id}>'
+        return f'<Razas_dogs {self.name}>'
 
     def serialize(self):
         return {
             "id": self.id,
             "descripcion": self.descripcion,
             "consejos": self.consejos,
+            "personalidad": self.personalidad,
             "origen": self.origen,
             "salud": self.salud,
-            "ejericicio": self.ejericicio,
+            "ejercicio": self.ejercicio,
+            "nutricion":self.nutricion,
             "aseo": self.aseo,
             "raza_nino": self.raza_nino,
             # do not serialize the password, its a security breach
