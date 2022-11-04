@@ -29,8 +29,14 @@ const Layout = () => {
             <Route element={<Biblioteca />} path="/biblioteca" />
             <Route element={<Login />} path="/login" />
             <Route element={<Signup />} path="/signup" />
-            <Route element={<Favoritos />} path="/favoritos/:theid" />
-            <Route element={<Buscador />} path="/buscador/:theid" />
+            <Route
+              element={localStorage.getItem("token") ? <Favoritos /> : <Home />}
+              path="/favoritos"
+            />
+            <Route
+              element={localStorage.getItem("token") ? <Buscador /> : <Home />}
+              path="/buscador"
+            />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />
