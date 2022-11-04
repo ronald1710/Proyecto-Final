@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import logo2ImageUrl from "../../img/logo2.png";
 
-export const Card = () => {
+export const Card = (props) => {
+  //const [favorito, setFavorito] = useState(false);
+  const { store, actions } = useContext(Context);
+  /*const getFavorito = () => {
+    store.favoritos.filter((caracter) => {
+      console.log(caracter);
+      if (caracter.name === props.name) {
+        setFavorito(true);
+      }
+    });
+  };*/
   return (
     <div className="card mt-3" style={{ maxWidth: 1500 }}>
       <div className="row g-0">
@@ -37,13 +47,7 @@ export const Card = () => {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="accordion-body text-center">
-                    El pelaje del Bergamasco es la característica más notable de
-                    este perro, ya que es largo, abundante, graso y le cuelga en
-                    una maraña. Puede ser gris, negro, marrón con manchas o
-                    marrón claro. Es un perro grande y fuerte que en la edad
-                    adulta alcanza de 58 a 62 cm en el caso de los machos y de
-                    54 a 58 cm en el de las hembras. Los machos tienen un peso
-                    de 32 a 38 kg y las hembras, de 26 a 32 kg.
+                    {props.Usuarios.descripcion}
                   </div>
                 </div>
               </div>

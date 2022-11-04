@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           initial: "white",
         },
       ],
+      biblioteca: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -32,7 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
         };
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/token", opts);
+          const resp = await fetch(process.env.BACKEND_URL + "/login", opts);
           if (resp.status !== 200) {
             alert("There has been some error");
             return false;
@@ -50,7 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       getMessage: async () => {
         try {
           // fetching data from the backend
-          const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
+          const resp = await fetch(process.env.BACKEND_URL + "/hello");
           const data = await resp.json();
           setStore({ message: data.message });
           // don't forget to return something, that is how the async resolves
@@ -71,6 +72,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => {
             /*ACA PONEMOS EL ALERTA SI EL REGISTRO FUE EXITOSO  */
           });
+      },
+      loadSomeData: () => {
+        fetch(process.env.BACKEND_URL + "/razas_dogs")
+          .then((resp) => resp.json())
+          .then((resp) => setStore({ biblioteca: resp.Usuarios }))
+          .catch((err) => console.error(err));
       },
       changeColor: (index, color) => {
         //get the store

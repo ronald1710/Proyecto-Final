@@ -56,13 +56,14 @@ def get_dogs():
     }
     return jsonify(response_body), 200
 
+
 @api.route('/dogs/<int:dogs_id>', methods=['GET'])
 def get_dog(dogs_id):
     dog = Dogs.query.get(dogs_id)
     if not dog:
-        return jsonify({"msg":"Dog not exists"})
+        return jsonify({"msg": "Dog not exists"})
     response_body = {
-       "Dog": dog
+        "Dog": dog
     }
     return jsonify(dog.serialize()), 200
 
@@ -77,7 +78,8 @@ def add_FavDog(user_id, dogs_id):
     response_body = {"msg": "Favorito agregado"}
     return jsonify(response_body), 200 """
 
-@api.route('/raza_dogs', methods=['GET'])
+
+@api.route('/razas_dogs', methods=['GET'])
 def get_razaDogs():
     raza_dogs = Razas_dogs.query.filter().all()
     result = list(map(lambda raza_dogs: raza_dogs.serialize(), raza_dogs))
@@ -86,6 +88,7 @@ def get_razaDogs():
         "msg": "Hello, this is your GET /raza_dogs response "
     }
     return jsonify(response_body), 200
+
 
 @api.route('/razas_dogs/<int:raza_dog_id>', methods=['GET'])
 def get_raza_dog(raza_dog_id):
@@ -96,4 +99,3 @@ def get_raza_dog(raza_dog_id):
         "Dog": raza_dog
     }
     return jsonify(raza_dog.serialize()), 200
-
