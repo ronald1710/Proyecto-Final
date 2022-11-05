@@ -19,9 +19,6 @@ export const Favoritos = (props) => {
         </div>
         <div className="container-flex">
           <Card />
-          <Card />
-          <Card />
-          <Card />
         </div>
       </div>
     </div>
