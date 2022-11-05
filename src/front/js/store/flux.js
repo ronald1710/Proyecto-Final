@@ -1,3 +1,4 @@
+const Swal = require("sweetalert2");
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -60,16 +61,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       signup: (body) => {
-        fetch("/signup", {
-          /* ACA VA LA URL */ method: "POST",
+        fetch(process.env.BACKEND_URL + "/signup", {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: body,
+          body: JSON.stringify(body),
         })
           .then((resp) => resp.json())
-          .then((data) => {
-            /*ACA PONEMOS EL ALERTA SI EL REGISTRO FUE EXITOSO  */
+          .then(() => {
+            Swal.fire("Registro exitoso", "Gracias por elegirnos", "success");
           });
       },
       changeColor: (index, color) => {
