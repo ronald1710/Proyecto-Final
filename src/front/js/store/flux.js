@@ -77,7 +77,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       loadSomeData: () => {
         fetch(process.env.BACKEND_URL + "/razas_dogs")
           .then((resp) => resp.json())
-          .then((resp) => setStore({ biblioteca: resp.Usuarios }))
+          .then((resp) => {
+            console.log(resp);
+            setStore({ biblioteca: resp.Usuarios });
+          })
           .catch((err) => console.error(err));
       },
       changeColor: (index, color) => {
