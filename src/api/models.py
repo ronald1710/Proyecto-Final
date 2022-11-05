@@ -48,8 +48,8 @@ class User_dogFavorite(db.Model):
     name = db.Column(db.String(120), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     dogs_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
-    """ user = db.relationship(User)
-    dogs = db.relationship(Dogs) """
+    user = db.relationship(User)
+    dogs = db.relationship(Dogs)
     
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
