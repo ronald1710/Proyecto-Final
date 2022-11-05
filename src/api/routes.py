@@ -111,6 +111,7 @@ def get_question():
     }
     return jsonify(response_body), 200
 
+
 @api.route('/question/<int:question_id>', methods=['GET'])
 def get_questionid(question_id):
     questionid = Question.query.get(question_id)
@@ -120,6 +121,7 @@ def get_questionid(question_id):
         "Usuarios": questionid
     }
     return jsonify(questionid.serialize()), 200
+
 
 @api.route('/answer', methods=['GET'])
 def get_answer():
@@ -131,6 +133,7 @@ def get_answer():
     }
     return jsonify(response_body), 200
 
+
 @api.route('/answer/<int:answer_id>', methods=['GET'])
 def get_answerid(answer_id):
     answerid = Answer.query.get(answer_id)
@@ -141,6 +144,29 @@ def get_answerid(answer_id):
     }
     return jsonify(answerid.serialize()), 200
 
+
+@api.route('/results', methods=['GET'])
+def get_result():
+    results = Results.query.filter().all()
+    result = list(map(lambda results: results.serialize(), results))
+    response_body = {
+        "Usuarios": result,
+        "msg": "Hello, this is your GET /answer response "
+    }
+    return jsonify(response_body), 200
+
+
+@api.route('/results/<int:results_id>', methods=['GET'])
+def get_resultsid(results_id):
+    resultsid = Results.query.get(results_id)
+    if not resultsid:
+        return jsonify({"msg": "Result not exists"})
+    response_body = {
+        "Usuarios": resultsid
+    }
+    return jsonify(resultsid.serialize()), 200
+
+
 @api.route('/user/<int:user_id>/addresult/<int:answer_id>/', methods=['POST'])
 def add_result(user_id, answer_id):
     usuario_query = User.query.get(user_id)
@@ -150,3 +176,48 @@ def add_result(user_id, answer_id):
     db.session.commit()
     response_body = {"msg": "Resultado agregado"}
     return jsonify(response_body), 200
+
+
+@api.route('/sabias_que', methods=['GET'])
+def get_sabias_que():
+    sabias_que = Sabias_que.query.filter().all()
+    result = list(map(lambda sabias_que: sabias_que.serialize(), sabias_que))
+    response_body = {
+        "Usuarios": result,
+        "msg": "Hello, this is your GET /sabias_que response "
+    }
+    return jsonify(response_body), 200
+
+
+@api.route('/sabias_que/<int:sabias_que_id>', methods=['GET'])
+def get_sabias_queid(sabias_que_id):
+    sabias_queid = Sabias_que.query.get(sabias_que_id)
+    if not sabias_queid:
+        return jsonify({"msg": "Sabias Que not exists"})
+    response_body = {
+        "Usuarios": answerid
+    }
+    return jsonify(sabias_queid.serialize()), 200
+
+
+@api.route('/resp_sabiasque', methods=['GET'])
+def get_resp_sabiasque():
+    resp_sabiasque = Resp_SabiasQue.query.filter().all()
+    result = list(
+        map(lambda resp_sabiasque: resp_sabiasque.serialize(), resp_sabiasque))
+    response_body = {
+        "Usuarios": result,
+        "msg": "Hello, this is your GET /Resp_sabiasque response "
+    }
+    return jsonify(response_body), 200
+
+
+@api.route('/resp_sabiasque/<int:resp_sabiasque_id>', methods=['GET'])
+def get_resp_sabiasqueid(resp_sabiasque_id):
+    resp_sabiasqueid = Resp_SabiasQue.query.get(resp_sabiasque_id)
+    if not resp_sabiasqueid:
+        return jsonify({"msg": "resp_sabias_ue not exists"})
+    response_body = {
+        "Usuarios": resp_sabiasqueid
+    }
+    return jsonify(resp_sabiasqueid.serialize()), 200
