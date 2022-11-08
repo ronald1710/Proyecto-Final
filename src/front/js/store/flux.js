@@ -1,3 +1,4 @@
+const Swal = require("sweetalert2");
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -61,22 +62,25 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       signup: (body) => {
-        fetch("/signup", {
-          /* ACA VA LA URL */ method: "POST",
+        fetch(process.env.BACKEND_URL + "/signup", {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: body,
+          body: JSON.stringify(body),
         })
           .then((resp) => resp.json())
-          .then((data) => {
-            /*ACA PONEMOS EL ALERTA SI EL REGISTRO FUE EXITOSO  */
+          .then(() => {
+            Swal.fire("Registro exitoso", "Gracias por elegirnos", "success");
           });
       },
       loadSomeData: () => {
         fetch(process.env.BACKEND_URL + "/razas_dogs")
           .then((resp) => resp.json())
-          .then((resp) => setStore({ biblioteca: resp.Usuarios }))
+          .then((resp) => {
+            console.log(resp);
+            setStore({ biblioteca: resp.Usuarios });
+          })
           .catch((err) => console.error(err));
       },
       changeColor: (index, color) => {

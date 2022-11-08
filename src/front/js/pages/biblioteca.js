@@ -16,10 +16,21 @@ export const Biblioteca = () => {
           </button>
         </div>
         <div className="container-flex">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {store.biblioteca.map((element, i) => {
+            return (
+              <Card
+                descripcion={element.descripcion}
+                consejos={element.consejos}
+                personalidad={element.personalidad}
+                origen={element.origen}
+                salud={element.salud}
+                ejercicio={element.salud}
+                nutricion={element.nutricio}
+                aseo={element.aseo}
+                raza_nino={element.raza_nino}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

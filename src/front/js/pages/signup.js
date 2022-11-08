@@ -18,9 +18,13 @@ export const Signup = () => {
       actions
         .signup({ email: email, password: password, name: name })
         .then((resp) => {
+          alert("Todo OK");
           if (resp) {
             navigate("/favoritos");
           }
+        })
+        .catch((er) => {
+          Swal.fire("Ocurrio un error", "Este correo ya existe", "error");
         });
     } else {
       Swal.fire(

@@ -24,11 +24,11 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Dogs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     raza_dog = db.Column(db.String(120),unique=True, nullable=False)
     img_dog = db.Column(db.String(300),unique=True, nullable=False)
-    
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
@@ -39,9 +39,9 @@ class Dogs(db.Model):
             "id": self.id,
             "raza_dog": self.raza_dog,
             "img_dog": self.img_dog,
-            
             # do not serialize the password, its a security breach
         }
+
 
 class User_dogFavorite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -51,6 +51,7 @@ class User_dogFavorite(db.Model):
     user = db.relationship(User)
     dogs = db.relationship(Dogs)
     
+
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
@@ -60,10 +61,11 @@ class User_dogFavorite(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            
+
             # do not serialize the password, its a security breach
         }
 # ---------------------------Dogs----------------------------
+
 
 class Razas_dogs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -79,6 +81,7 @@ class Razas_dogs(db.Model):
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     dog = db.relationship(Dogs)
     
+
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
@@ -93,15 +96,17 @@ class Razas_dogs(db.Model):
             "origen": self.origen,
             "salud": self.salud,
             "ejercicio": self.ejercicio,
-            "nutricion":self.nutricion,
+            "nutricion": self.nutricion,
             "aseo": self.aseo,
             "raza_nino": self.raza_nino,
             # do not serialize the password, its a security breach
         }
 # ---------------------------Questios_Answer----------------------------
+
+
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    question = db.Column(db.String(250),unique=True, nullable=False)
+    question = db.Column(db.String(250), unique=True, nullable=False)
 
     def __repr__(self):
         return f'<Question {self.id}>'
@@ -112,6 +117,8 @@ class Question(db.Model):
             "question": self.question,
             # do not serialize the password, its a security breach
         }
+
+
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     answer1 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
@@ -119,6 +126,7 @@ class Answer(db.Model):
     answer3 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
     answer4 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
     answer5 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
+    # Falta hacerlo multilinestring
     question_id = db.Column(db.Integer, db.ForeignKey("question.id"))
     question = db.relationship(Question)
 
@@ -137,20 +145,22 @@ class Answer(db.Model):
 
             # do not serialize the password, its a security breach
         }
+
+
 class Results(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    result_0 = db.Column(db.String(50),unique=True, nullable=False)
-    result_1 = db.Column(db.String(50),unique=True, nullable=False)
-    result_2 = db.Column(db.String(50),unique=True, nullable=False)
-    result_3 = db.Column(db.String(50),unique=True, nullable=False)
-    result_4 = db.Column(db.String(50),unique=True, nullable=False)
-    result_5 = db.Column(db.String(50),unique=True, nullable=False)
-    result_6 = db.Column(db.String(50),unique=True, nullable=False)
-    result_7 = db.Column(db.String(50),unique=True, nullable=False)
-    result_8 = db.Column(db.String(50),unique=True, nullable=False)
-    result_9 = db.Column(db.String(50),unique=True, nullable=False)
-    result_10 = db.Column(db.String(50),unique=True, nullable=False)
-    result_11 = db.Column(db.String(50),unique=True, nullable=False)
+    result_0 = db.Column(db.String(50), unique=True, nullable=False)
+    result_1 = db.Column(db.String(50), unique=True, nullable=False)
+    result_2 = db.Column(db.String(50), unique=True, nullable=False)
+    result_3 = db.Column(db.String(50), unique=True, nullable=False)
+    result_4 = db.Column(db.String(50), unique=True, nullable=False)
+    result_5 = db.Column(db.String(50), unique=True, nullable=False)
+    result_6 = db.Column(db.String(50), unique=True, nullable=False)
+    result_7 = db.Column(db.String(50), unique=True, nullable=False)
+    result_8 = db.Column(db.String(50), unique=True, nullable=False)
+    result_9 = db.Column(db.String(50), unique=True, nullable=False)
+    result_10 = db.Column(db.String(50), unique=True, nullable=False)
+    result_11 = db.Column(db.String(50), unique=True, nullable=False)
     answer_id = db.Column(db.Integer, db.ForeignKey("answer.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     answer = db.relationship(Answer)
@@ -178,26 +188,27 @@ class Results(db.Model):
         }
 
 
-# ---------------------------Logica----------------------------        
+# ---------------------------Logica----------------------------
 class Sabias_que(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    experiencia = db.Column(db.String(50),unique=True, nullable=False)
-    adiestramiento = db.Column(db.String(50),unique=True, nullable=False)
-    paseos = db.Column(db.String(50),unique=True, nullable=False)
-    tiempo_paseo = db.Column(db.String(50),unique=True, nullable=False)
-    tamano = db.Column(db.String(50),unique=True, nullable=False)
-    babeo = db.Column(db.String(50),unique=True, nullable=False)
-    aseo = db.Column(db.String(50),unique=True, nullable=False)
-    hipoalergenica = db.Column(db.String(50),unique=True, nullable=False)
-    ladrador = db.Column(db.String(50),unique=True, nullable=False)
-    guardian = db.Column(db.String(50),unique=True, nullable=False)
-    entre_otroPerros = db.Column(db.String(50),unique=True, nullable=False)
-    perro_familiar = db.Column(db.String(50),unique=True, nullable=False)
+    experiencia = db.Column(db.String(50), unique=True, nullable=False)
+    adiestramiento = db.Column(db.String(50), unique=True, nullable=False)
+    paseos = db.Column(db.String(50), unique=True, nullable=False)
+    tiempo_paseo = db.Column(db.String(50), unique=True, nullable=False)
+    tamano = db.Column(db.String(50), unique=True, nullable=False)
+    babeo = db.Column(db.String(50), unique=True, nullable=False)
+    aseo = db.Column(db.String(50), unique=True, nullable=False)
+    hipoalergenica = db.Column(db.String(50), unique=True, nullable=False)
+    ladrador = db.Column(db.String(50), unique=True, nullable=False)
+    guardian = db.Column(db.String(50), unique=True, nullable=False)
+    entre_otroPerros = db.Column(db.String(50), unique=True, nullable=False)
+    perro_familiar = db.Column(db.String(50), unique=True, nullable=False)
     results_id = db.Column(db.Integer, db.ForeignKey("results.id"))
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     results = db.relationship(Results)
     dogs = db.relationship(Dogs)
     
+
     def __repr__(self):
         return f'<Sabias_que {self.id}>'
 
@@ -216,24 +227,25 @@ class Sabias_que(db.Model):
             "guardian": self.guardian,
             "entre_otroPerros": self.entre_otroPerros,
             "perro_familiar": self.result_10,
-            
+
             # do not serialize the password, its a security breach
         }
 
+
 class Resp_SabiasQue(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    resp_boolean0 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean1 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean2 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean3 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean4 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean5 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean6 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean7 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean8 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean9 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean10 = db.Column(db.Boolean(),nullable=False)
-    resp_boolean11 = db.Column(db.Boolean(),nullable=False)
+    resp_boolean0 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean1 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean2 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean3 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean4 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean5 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean6 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean7 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean8 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean9 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean10 = db.Column(db.Boolean(), nullable=False)
+    resp_boolean11 = db.Column(db.Boolean(), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     sabiasque_id = db.Column(db.Integer, db.ForeignKey("sabias_que.id"))
@@ -241,7 +253,6 @@ class Resp_SabiasQue(db.Model):
     dogs = db.relationship(Dogs)
     sabiasque= db.relationship(Sabias_que)
 
-    
     def __repr__(self):
         return f'<Resp_SabiasQue {self.id}>'
 
@@ -260,6 +271,6 @@ class Resp_SabiasQue(db.Model):
             "resp_boolean9": self.resp_boolean9,
             "resp_boolean10": self.resp_boolean10,
             "resp_boolean11": self.resp_boolean11,
-           
+
             # do not serialize the password, its a security breach
         }

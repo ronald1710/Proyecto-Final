@@ -10,11 +10,20 @@ export const Navbar = () => {
           <img src={logo2ImageUrl} alt="logo" width="50" height="50" />
         </a>
         <div className="ml-auto">
-          <Link to="/login">
-            <button className="btn btn-info bg-opacity-25 text-white">
-              Login
+          {!localStorage.getItem("token") ? (
+            <Link to="/login">
+              <button className="btn btn-info bg-opacity-25 text-white">
+                Login
+              </button>
+            </Link>
+          ) : (
+            <button
+              className="btn btn-info bg-opacity-25 text-white"
+              onClick={() => localStorage.removeItem("token")}
+            >
+              Logout
             </button>
-          </Link>
+          )}
         </div>
       </div>
     </nav>
