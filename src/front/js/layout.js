@@ -30,11 +30,15 @@ const Layout = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<Signup />} path="/signup" />
             <Route
-              element={localStorage.getItem("token") ? <Favoritos /> : <Home />}
+              element={
+                localStorage.getItem("token") ? <Favoritos /> : <Signup />
+              }
               path="/favoritos"
             />
             <Route
-              element={localStorage.getItem("token") ? <Buscador /> : <Home />}
+              element={
+                localStorage.getItem("token") ? <Buscador /> : <Signup />
+              }
               path="/buscador"
             />
             <Route element={<h1>Not found!</h1>} />

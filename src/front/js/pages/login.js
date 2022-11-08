@@ -3,7 +3,6 @@ import { Context } from "../store/appContext";
 import imagen_login from "./../../img/fondo_imagen.jpg";
 import { useNavigate } from "react-router-dom";
 import "../../styles/login.css";
-//import { Navbar } from "./component/navbar";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -14,6 +13,7 @@ export const Login = () => {
     actions.login(email, password).then((resp) => {
       if (resp) {
         navigate("/favoritos");
+        window.location.reload(false);
       }
     });
   };
