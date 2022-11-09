@@ -6,7 +6,7 @@ import "../../styles/login.css";
 import { Link } from "react-router-dom";
 //import { Navbar } from "./component/navbar";
 
-export const Login = () => {
+export const Forgot_password = () => {
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,40 +36,12 @@ export const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input
-            className="m-1 input-group-text"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
           <button
             className="btn btn-secondary text-white text-center mt-2"
             onClick={handleClick}
           >
-            Acceso
+            Reestablecer contraseña
           </button>
-          <br></br>
-          <div>
-            <Link to="/forgotpassword">
-              <button
-                className="btn btn-secondary text-white mt-2"
-                type="button"
-              >
-                Olvido su contraseña
-              </button>
-            </Link>
-          </div>
-          <div>
-            <Link to="/signup">
-              <button
-                className="btn btn-secondary text-white mt-2"
-                type="button"
-              >
-                Registrarse
-              </button>
-            </Link>
-          </div>
         </div>
       </div>
     </div>
