@@ -14,5 +14,21 @@ export const Card_biblioteca = (props) => {
       }
     });
   };*/
-  return <div></div>;
+  return (
+    <div class="col">
+      <div className="card m-2" style={{ width: "18rem", height: "405px" }}>
+        <img
+          src={props.img_dog}
+          className="card-img-top text-center"
+          alt={props.raza_dog}
+        />
+        <div className="card-body">
+          <h5 className="card-title text-center">{props.raza_dog}</h5>
+          <a href="#" className="btn btn-primary">
+            Ver mas...
+          </a>
+        </div>
+      </div>
+    </div>
+  );
 };

@@ -16,6 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         },
       ],
       biblioteca: [],
+      raza: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -80,6 +81,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((resp) => {
             console.log(resp);
             setStore({ biblioteca: resp.Usuarios });
+          })
+          .catch((err) => console.error(err));
+      },
+      loadSomeData: () => {
+        fetch(process.env.BACKEND_URL + "/dogs")
+          .then((resp) => resp.json())
+          .then((resp) => {
+            console.log(resp);
+            setStore({ raza: resp.Usuarios });
           })
           .catch((err) => console.error(err));
       },
