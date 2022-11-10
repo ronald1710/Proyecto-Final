@@ -1,4 +1,18 @@
-#div_fondo {
-  width: 100%;
-  background-size: 100% 100%;
+#info_login {
+  background: #cbcccd;
+  width: 65%;
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+  margin-left: 50px;
+  box-shadow: 17px 17px 15px gray;
+}
+#info_imagen {
+  width: 40%;
+}
+#titulo {
+  color: white;
+}
+#enlace {
+  text-decoration: none;
 }

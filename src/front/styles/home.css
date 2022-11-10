@@ -5,24 +5,23 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
-#fondoHome {
-  background-image: linear-gradient(
-    to right top,
-    #d16ba5,
-    #c777b9,
-    #ba83ca,
-    #aa8fd8,
-    #9a9ae1,
-    #8aa7ec,
-    #79b3f4,
-    #69bff8,
-    #52cffe,
-    #41dfff,
-    #46eefa,
-    #5ffbf1
-  );
-}
+
 #imgfondo {
   width: 250px;
   height: 250px;
+}
+#texto {
+  width: 50%;
+}
+#imggiro {
+  width: 95%;
+  animation: rotation 35s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
