@@ -28,7 +28,7 @@ export const Login = () => {
     >
       <br></br>
       <br></br>
-      <div className="row">
+      <div className="row" id="div_principal">
         <div className="col">
           <div className=" text-center mt-2" id="info_login">
             <h1 id="titulo">
@@ -74,7 +74,7 @@ export const Login = () => {
         </div>
         <div
           id="perro_login"
-          className="col"
+          className="col d-none d-md-block"
           style={{
             backgroundImage: `url(${perro_login})`,
             backgroundRepeat: "no-repeat",

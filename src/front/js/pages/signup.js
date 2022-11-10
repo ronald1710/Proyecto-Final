@@ -42,19 +42,12 @@ export const Signup = () => {
       style={{ backgroundImage: `url(${fondo_signup})`, height: "490px" }}
     >
       <div className="row" id="div_principal">
-        <div
-          className="col"
-          style={{
-            backgroundImage: `url(${perro_signup})`,
-            backgroundRepeat: "no-repeat",
-            height: "auto",
-            width: "auto",
-          }}
-          id="div_img_signup"
-        ></div>
+        <div className="col d-none d-md-block " id="div_perro">
+          <img src={perro_signup} height="400px" width="400px"></img>
+        </div>
 
         <div className="text-center col" id="div_signup">
-          <div className=" m-4 text-white" id="div_contenido">
+          <div className="  text-white" id="div_contenido">
             <h1>Registrarse</h1>
             <form onSubmit={handleClick}>
               <div className="text-center">
