@@ -13,6 +13,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Signup } from "./pages/signup";
 import { Forgot_password } from "./pages/forgotPassword";
+import { Restore_password } from "./pages/restorePassword";
 
 //create your first component
 const Layout = () => {
@@ -30,6 +31,10 @@ const Layout = () => {
             <Route element={<Biblioteca />} path="/biblioteca" />
             <Route element={<Login />} path="/login" />
             <Route element={<Forgot_password />} path="/forgotpassword" />
+            <Route
+              element={<Restore_password />}
+              path="/restorepassword/:accesstoken"
+            />
             <Route element={<Signup />} path="/signup" />
             <Route
               element={localStorage.getItem("token") ? <Favoritos /> : <Home />}

@@ -74,6 +74,20 @@ const getState = ({ getStore, getActions, setStore }) => {
             Swal.fire("Registro exitoso", "Gracias por elegirnos", "success");
           });
       },
+      reset_password: (body) => {
+        fetch(process.env.BACKEND_URL + "/resetpassword", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        })
+          .then((resp) => resp.json())
+          .then(() => {
+            Swal.fire("Registro exitoso", "Gracias por elegirnos", "success");
+          });
+      },
+
       loadSomeData: () => {
         fetch(process.env.BACKEND_URL + "/razas_dogs")
           .then((resp) => resp.json())

@@ -9,15 +9,8 @@ import { Link } from "react-router-dom";
 export const Forgot_password = () => {
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const handleClick = () => {
-    actions.login(email, password).then((resp) => {
-      if (resp) {
-        navigate("/favoritos");
-      }
-    });
-  };
+  const handleClick = () => {};
 
   return (
     // <Navbar />

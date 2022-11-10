@@ -1,10 +1,12 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, current_app
 from api.models import db, User, Dogs, User_dogFavorite, Razas_dogs
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from flask_mail import Message
+from flask_mail import Mail
 
 api = Blueprint('api', __name__)
 
@@ -77,6 +79,20 @@ def add_FavDog(user_id, dogs_id):
     db.session.commit()
     response_body = {"msg": "Favorito agregado"}
     return jsonify(response_body), 200 """
+
+
+@api.route('/sendEmail', methods=['POST'])
+def send_email():
+    email = request.json.get("email", None)
+    isEmail = User.query.filter_by(email=email).first()
+    if not isEmail:
+        return jsonify({"msg": "este mail no es valido"}), 400
+    msg = Message("Reset Password", recipients=[email])
+    access_token = create_access_token(identity=email)
+    msg.html = f"""<h1>Su contraseña ha sido cambiada. Este es su access token: {access_token} </h1>"""
+    # current_app.mail.send(msg)
+    msg.
+    return jsonify({"msg": "Mail enviado correctamente"}), 200
 
 
 @api.route('/razas_dogs', methods=['GET'])
