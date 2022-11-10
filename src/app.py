@@ -43,7 +43,7 @@ mail_settings = {
     # MAIL_ASCII_ATTACHMENTS : default False
 }
 
-app.config.update(mail_setting)
+app.config.update(mail_settings)
 mail = Mail(app)
 # se agrega mail a la app y se va a llamar en routes.py como current_app
 app.mail = mail
