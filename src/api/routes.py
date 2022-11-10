@@ -167,11 +167,26 @@ def get_resultsid(results_id):
     return jsonify(resultsid.serialize()), 200
 
 
-@api.route('/user/<int:user_id>/addresult/<int:answer_id>/', methods=['POST'])
+@api.route('/user/<int:user_id>/addresult/<int:answer_id>', methods=['POST'])
 def add_result(user_id, answer_id):
     usuario_query = User.query.get(user_id)
+    json = request.get_json()
+    print(json)
+    resul0 = json.get("result_0")
+    resul1 = json.get("result_1")
+    resul2 = json.get("result_2")
+    resul3 = json.get("result_3")
+    resul4 = json.get("result_4")
+    resul5 = json.get("result_5")
+    resul6 = json.get("result_6")
+    resul7 = json.get("result_7")
+    resul8 = json.get("result_8")
+    resul9 = json.get("result_9")
+    resul10 = json.get("result_10")
+    resul11 = json.get("result_11")
     result_answer = Results(
-        user_id=usuario_query.id, answer_id=int(answer_id))
+        user_id=usuario_query.id, answer_id=int(answer_id),result_0= resul0 ,result_1= resul1,result_2= resul2,result_3= resul3,result_4= resul4,result_5= resul5
+        ,result_6= resul6,result_7= resul7,result_8= resul8,result_9= resul9,result_10= resul10,result_11= resul11)
     db.session.add(result_answer)
     db.session.commit()
     response_body = {"msg": "Resultado agregado"}
@@ -216,8 +231,18 @@ def get_resp_sabiasque():
 def get_resp_sabiasqueid(resp_sabiasque_id):
     resp_sabiasqueid = Resp_SabiasQue.query.get(resp_sabiasque_id)
     if not resp_sabiasqueid:
-        return jsonify({"msg": "resp_sabias_ue not exists"})
+        return jsonify({"msg": "resp_sabias_que not exists"})
     response_body = {
         "Usuarios": resp_sabiasqueid
     }
     return jsonify(resp_sabiasqueid.serialize()), 200
+
+""" @api.route('/user/<int:user_id>/addresp/<int:answer_id>/', methods=['POST'])
+def add_result(user_id, answer_id):
+    usuario_query = User.query.get(user_id)
+    result_answer = Results(
+        user_id=usuario_query.id, answer_id=int(answer_id))
+    db.session.add(result_answer)
+    db.session.commit()
+    response_body = {"msg": "Resultado agregado"}
+    return jsonify(response_body), 200 """
