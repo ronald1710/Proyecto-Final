@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import fondo_signup from "./../../img/fondo_signup.jpg";
+import perro_signup from "./../../img/perro_signup.png";
 import { useNavigate } from "react-router-dom";
 import "../../styles/signup.css";
 import Swal from "sweetalert2";
@@ -40,54 +41,65 @@ export const Signup = () => {
       id="div_fondo"
       style={{ backgroundImage: `url(${fondo_signup})`, height: "490px" }}
     >
-      <div className="text-center" id="div_signup">
-        <h1>Registrarse</h1>
-        <form onSubmit={handleClick}>
-          <div>
-            <div className="text-center">
-              <input
-                className="m-1 group-text text-center rounded-pill"
-                type="text"
-                placeholder="Nombre"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div>
-              <input
-                className="m-1 group-text text-center rounded-pill"
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <input
-                className="m-1 group-text text-center rounded-pill"
-                type="password"
-                placeholder="Constraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div>
-              <input
-                className="m-1 group-text text-center rounded-pill"
-                type="password"
-                placeholder="Repetir constraseña"
-                value={repeat_password}
-                onChange={(e) => setRepeat_password(e.target.value)}
-              />
-            </div>
-            <button
-              className="btn btn-secondary text-white text-center mt-2"
-              type="submit"
-            >
-              Registrarse
-            </button>
+      <div className="row" id="div_principal">
+        <div
+          className="col"
+          style={{
+            backgroundImage: `url(${perro_signup})`,
+            backgroundRepeat: "no-repeat",
+            height: "auto",
+            width: "auto",
+          }}
+          id="div_img_signup"
+        ></div>
+
+        <div className="text-center col" id="div_signup">
+          <div className=" m-4 text-white" id="div_contenido">
+            <h1>Registrarse</h1>
+            <form onSubmit={handleClick}>
+              <div className="text-center">
+                <input
+                  className="input-group text-center rounded-pill"
+                  type="text"
+                  placeholder="Nombre"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <br></br>
+                <input
+                  className="input-group text-center rounded-pill"
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <br></br>
+                <input
+                  className="input-group text-center rounded-pill"
+                  type="password"
+                  placeholder="Constraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <br></br>
+                <input
+                  className=" input-group text-center rounded-pill"
+                  type="password"
+                  placeholder="Repetir constraseña"
+                  value={repeat_password}
+                  onChange={(e) => setRepeat_password(e.target.value)}
+                />
+                <br></br>
+                <button
+                  className="btn btn-secondary text-white text-center mt-2"
+                  type="submit"
+                >
+                  Registrarse
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
