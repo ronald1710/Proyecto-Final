@@ -91,7 +91,6 @@ def send_email():
     access_token = create_access_token(identity=email)
     msg.html = f"""<h1>Su contraseña ha sido cambiada. Este es su access token: {access_token} </h1>"""
     # current_app.mail.send(msg)
-    msg.
     return jsonify({"msg": "Mail enviado correctamente"}), 200
 
 
