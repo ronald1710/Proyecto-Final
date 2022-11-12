@@ -122,9 +122,9 @@ class Question(db.Model):
         }
 
 
-class Answer(db.Model,Base):
+class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    answer = db.Column(ARRAY(db.String(50)), nullable=False)# Falta hacerlo multilinestring
+    answer = db.Column(db.ARRAY(db.String(50)), nullable=False)# Falta hacerlo multilinestring
     #answer2 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
     #answer3 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
     #answer4 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
