@@ -28,15 +28,15 @@ Jwt = JWTManager(app)
 
 # confuguracion email
 #mail = mypetfriendf@gmail.com
-#password = perritos123
+# password = perritos123 ***ahora con 2fa para seguridad la password es lcqwkbumcbotlngy
 
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
-    "MAIL_PORT": 465,
+    "MAIL_PORT": 587,
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
     "MAIL_USERNAME":  'mypetfriendf@gmail.com',
-    "MAIL_PASSWORD": 'perritos123',
+    "MAIL_PASSWORD": 'lcqwkbumcbotlngy',
     "MAIL_DEFAULT_SENDER": 'mypetfriendf@gmail.com',
     # MAIL_MAX_EMAILS : default None
     # MAIL_SUPPRESS_SEND : default app.testing
