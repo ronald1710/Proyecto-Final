@@ -1,5 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import relationship
+from enum import Enum, auto
 
 db = SQLAlchemy()
 
@@ -121,7 +123,7 @@ class Question(db.Model):
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    answer1 = db.Column(db.String({(50),(50),(50),(50),(50)}))# Falta hacerlo multilinestring
+    answer1 = db.Column(ARRAY(db.String), nullable=False)# Falta hacerlo multilinestring
     #answer2 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
     #answer3 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
     #answer4 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
@@ -137,12 +139,6 @@ class Answer(db.Model):
         return {
             "id": self.id,
             "answer1": self.answer1,
-            "answer2": self.answer2,
-            "answer3": self.answer3,
-            "answer4": self.answer4,
-            "answer5": self.answer5,
-         
-
             # do not serialize the password, its a security breach
         }
 
