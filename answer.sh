@@ -1,0 +1,1 @@
+psql example -c "INSERT INTO Answer(id,answer1)VALUES('1',['A','B','C','D','E'])
