@@ -170,8 +170,9 @@ def get_resultsid(results_id):
 @api.route('/user/<int:user_id>/addresult/<int:answer_id>', methods=['POST'])
 def add_result(user_id, answer_id):
     usuario_query = User.query.get(user_id)
+    #print(user_id)
     json = request.get_json()
-    print(json)
+    #print(json)
     resul0 = json.get("result_0")
     resul1 = json.get("result_1")
     resul2 = json.get("result_2")
