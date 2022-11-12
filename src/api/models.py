@@ -1,7 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import relationship
-from enum import Enum, auto
+from sqlalchemy.ext.declarative import declarative_base
+Base = declarative_base()
 
 db = SQLAlchemy()
 
@@ -121,7 +122,7 @@ class Question(db.Model):
         }
 
 
-class Answer(db.Model):
+class Answer(db.Model,Base):
     id = db.Column(db.Integer, primary_key=True)
     answer = db.Column(ARRAY(db.String(50)), nullable=False)# Falta hacerlo multilinestring
     #answer2 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
