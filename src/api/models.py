@@ -124,7 +124,7 @@ class Question(db.Model):
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    answer = db.Column(db.ARRAY(db.String(50)), nullable=False)# Falta hacerlo multilinestring
+    answer1 = db.Column(db.ARRAY(db.String(50),[]), nullable=False)# Falta hacerlo multilinestring
     #answer2 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
     #answer3 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
     #answer4 = db.Column(db.String(250),unique=True, nullable=False)# Falta hacerlo multilinestring
@@ -139,7 +139,7 @@ class Answer(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "answer": self.answer,
+            "answer1": self.answer1,
             # do not serialize the password, its a security breach
         }
 
