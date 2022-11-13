@@ -171,9 +171,11 @@ def get_resultsid(results_id):
 def add_result(user_id, answer_id):
     usuario_query = User.query.get(user_id)
     #print(user_id)
-    json = request.get_json()
+    #json = request.get_json()
+    #json = Answer.query.get(answer_id)
     #json = Answer.query.filter()
-    print(json)
+    #print(json)
+    valorid = Answer.query.get(answer_id)
     resul0 = json.get("result_0")
     resul1 = json.get("result_1")
     resul2 = json.get("result_2")
