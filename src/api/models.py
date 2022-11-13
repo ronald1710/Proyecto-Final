@@ -124,12 +124,11 @@ class Question(db.Model):
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    answer1 = db.Column(db.String(50))# Falta hacerlo multilinestring
-    answer2 = db.Column(db.String(50))# Falta hacerlo multilinestring
-    answer3 = db.Column(db.String(50))# Falta hacerlo multilinestring
-    answer4 = db.Column(db.String(50))# Falta hacerlo multilinestring
-    answer5 = db.Column(db.String(50))# Falta hacerlo multilinestring
-    # Falta hacerlo multilinestring
+    answer1 = db.Column(db.ARRAY(db.String[1][5]))# Falta hacerlo multilinestring
+    #answer2 = db.Column(db.String(50))# Falta hacerlo multilinestring
+    #answer3 = db.Column(db.String(50))# Falta hacerlo multilinestring
+    #answer4 = db.Column(db.String(50))# Falta hacerlo multilinestring
+    #answer5 = db.Column(db.String(50))# Falta hacerlo multilinestring
     question_id = db.Column(db.Integer, db.ForeignKey("question.id"))
     question = db.relationship(Question)
 
@@ -188,18 +187,18 @@ class Results(db.Model):
 # ---------------------------Logica----------------------------
 class Sabias_que(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    experiencia = db.Column(db.String(50), unique=True, nullable=False)
-    adiestramiento = db.Column(db.String(50), unique=True, nullable=False)
-    paseos = db.Column(db.String(50), unique=True, nullable=False)
-    tiempo_paseo = db.Column(db.String(50), unique=True, nullable=False)
-    tamano = db.Column(db.String(50), unique=True, nullable=False)
-    babeo = db.Column(db.String(50), unique=True, nullable=False)
-    aseo = db.Column(db.String(50), unique=True, nullable=False)
-    hipoalergenica = db.Column(db.String(50), unique=True, nullable=False)
-    ladrador = db.Column(db.String(50), unique=True, nullable=False)
-    guardian = db.Column(db.String(50), unique=True, nullable=False)
-    entre_otroPerros = db.Column(db.String(50), unique=True, nullable=False)
-    perro_familiar = db.Column(db.String(50), unique=True, nullable=False)
+    experiencia = db.Column(db.ARRAY(db.String[1][5]))
+    adiestramiento = db.Column(db.ARRAY(db.String[1][5]))
+    paseos = db.Column(db.ARRAY(db.String[1][5]))
+    tiempo_paseo = db.Column(db.ARRAY(db.String[1][5]))
+    tamano = db.Column(db.ARRAY(db.String[1][5]))
+    babeo = db.Column(db.ARRAY(db.String[1][5]))
+    aseo = db.Column(db.ARRAY(db.String[1][5]))
+    hipoalergenica = db.Column(db.ARRAY(db.String[1][5]))
+    ladrador = db.Column(db.ARRAY(db.String[1][5]))
+    guardian = db.Column(db.ARRAY(db.String[1][5]))
+    entre_otroPerros = db.Column(db.ARRAY(db.String[1][5]))
+    perro_familiar = db.Column(db.ARRAY(db.String[1][5]))
     results_id = db.Column(db.Integer, db.ForeignKey("results.id"))
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     results = db.relationship(Results)

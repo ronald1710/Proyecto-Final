@@ -1,1 +1,1 @@
-psql example -c "INSERT INTO Answer(id,answer1)VALUES('1',(ARRAY[,'A','B','C','D','E']))
+psql example -c "INSERT INTO Answer(id,answer1)VALUES('5','{"A","B","C","D","E"}')"
