@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Card } from "../component/cards";
+import { Card_biblioteca } from "../component/card_biblioteca";
+import fondo_biblioteca from "./../../img/fondo_biblioteca.jpg";
 import { Context } from "../store/appContext";
 import "../../styles/biblioteca.css";
 
@@ -8,26 +9,23 @@ export const Biblioteca = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div id="fondoHome">
-      <div className="container-fluid">
-        <div className="ml-auto  text-center">
-          <button className="btn btn-info mt-4 bg-opacity-25 text-white mb-2 ">
-            <h3>Biblioteca de Razas</h3>
-          </button>
-        </div>
-        <div className="container-flex">
-          {store.biblioteca.map((element, i) => {
+    <div
+      id="fondoHome"
+      className="container-fluid"
+      style={{ backgroundImage: `url(${fondo_biblioteca})` }}
+    >
+      <div className="text-center">
+        <button className="btn btn-secondary mt-3 btn-opacity-75 text-white text-center mb-2 ">
+          <h3>Biblioteca de Razas</h3>
+        </button>
+      </div>
+      <div class="container text-center">
+        <div class="row">
+          {store.raza.map((element, i) => {
             return (
-              <Card
-                descripcion={element.descripcion}
-                consejos={element.consejos}
-                personalidad={element.personalidad}
-                origen={element.origen}
-                salud={element.salud}
-                ejercicio={element.salud}
-                nutricion={element.nutricio}
-                aseo={element.aseo}
-                raza_nino={element.raza_nino}
+              <Card_biblioteca
+                img_dog={element.img_dog}
+                raza_dog={element.raza_dog}
               />
             );
           })}

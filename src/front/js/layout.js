@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { Biblioteca } from "./pages/biblioteca";
+import { Biblioteca_individual } from "./pages/biblioteca_individual";
 import { Login } from "./pages/login";
 import { Favoritos } from "./pages/favoritos";
 import { Buscador } from "./pages/buscador";
@@ -27,6 +28,10 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<Biblioteca />} path="/biblioteca" />
+            <Route
+              element={<Biblioteca_individual />}
+              path="/biblioteca_individual"
+            />
             <Route element={<Login />} path="/login" />
             <Route element={<Signup />} path="/signup" />
             <Route

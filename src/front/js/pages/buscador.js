@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/buscador.css";
-import buscador from "./../../img/buscador.jpg";
+import fondo_buscador from "./../../img/fondo_buscador.jpg";
+import perro_buscador from "./../../img/perro_buscador.png";
 
 export const Buscador = (props) => {
   const { store, actions } = useContext(Context);
@@ -12,21 +13,22 @@ export const Buscador = (props) => {
   return (
     <div
       id="div_fondo"
-      style={{ backgroundImage: `url(${buscador})`, height: "700px" }}
+      style={{ backgroundImage: `url(${fondo_buscador})`, height: "750px" }}
       className=" "
     >
-      <h1 className=" text-white text-center">
+      <h1 className="text-center  mb-2">
         Bienvenido al Selector de Razas de Perros
       </h1>
       <div id="preguntas" className="m-2">
-        <p className="m-3 text-white text-center">
+        <h6 className="m-3 text-center" id="intro">
           Quizá sepas qué razas de perros te gustan o puede que necesites alguna
           guía para elegir una. Aquí estamos para ayudarte a encontrar a tu
           amigo ideal de cuatro patas.
-        </p>
+        </h6>
+
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Has tenido perro alguna vez?
@@ -49,7 +51,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Qué nivel de adiestramiento estás dispuesto a ofrecerle?
@@ -75,7 +77,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Qué tipo de paseos te gustaría hacer?
@@ -98,7 +100,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Durante cuánto tiempo pasearás a tu perro cada día?
@@ -118,7 +120,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Tienes alguna preferencia sobre el tamaño?
@@ -141,7 +143,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Te molesta que el perro babee?
@@ -158,7 +160,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Cuánto estás dispuesto a asearlo y cepillarlo?
@@ -177,7 +179,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Convives con alguien alérgico a los perros?
@@ -198,7 +200,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Cómo de ladrador quieres que sea el perro?
@@ -221,7 +223,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Buscas un perro que te proteja a ti y a tu propiedad?
@@ -240,7 +242,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Quieres que tu perro se lleve bien con otras mascotas?
@@ -258,7 +260,7 @@ export const Buscador = (props) => {
         </div>
         <div className="input-group mb-2">
           <button
-            className="btn btn-outline-secondary text-white"
+            className="btn btn-outline-secondary text-black"
             type="button"
           >
             ¿Estás buscando un perro que se lleve bien con los niños?
