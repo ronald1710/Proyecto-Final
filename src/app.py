@@ -13,6 +13,8 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
+import smtplib
+import ssl
 
 
 #from models import Person
@@ -31,22 +33,39 @@ Jwt = JWTManager(app)
 # password = perritos123 ***ahora con 2fa para seguridad la password es lcqwkbumcbotlngy
 
 mail_settings = {
-    "MAIL_SERVER": 'smtp.gmail.com',
+    "MAIL_SERVER": 'smtp.office365.com',
     "MAIL_PORT": 587,
-    "MAIL_USE_TLS": False,
+    "MAIL_USE_TLS": True,
     "MAIL_USE_SSL": True,
-    "MAIL_USERNAME":  'mypetfriendf@gmail.com',
-    "MAIL_PASSWORD": 'lcqwkbumcbotlngy',
-    "MAIL_DEFAULT_SENDER": 'mypetfriendf@gmail.com',
+    "MAIL_USERNAME": 'mypetfriend1@outlook.com',
+    "MAIL_PASSWORD": 'perritos123',
+    "MAIL_DEFAULT_SENDER": 'mypetfriend1@outlook.com',
     # MAIL_MAX_EMAILS : default None
     # MAIL_SUPPRESS_SEND : default app.testing
     # MAIL_ASCII_ATTACHMENTS : default False
 }
 
+""" port = 587  # For starttls
+smtp_server = "smtp.gmail.com"
+sender_email = "mypetfriendf@gmail.com"
+receiver_email = "abelgr45@gmail.com"
+password ="lcqwkbumcbotlngy"
+message = """
+# \"""
+# Subject: Hi there
+# This message is sent from Python."""
+""" context = ssl.create_default_context()
+with smtplib.SMTP(smtp_server, port) as server:
+    server.ehlo()  # Can be omitted
+    server.starttls(context=context)
+    server.ehlo()  # Can be omitted
+    server.login(sender_email, password)
+    server.sendmail(sender_email, receiver_email, message)
+ """ """
 app.config.update(mail_settings)
 mail = Mail(app)
 # se agrega mail a la app y se va a llamar en routes.py como current_app
-app.mail = mail
+app.mail = mail"""
 
 
 # database condiguration
