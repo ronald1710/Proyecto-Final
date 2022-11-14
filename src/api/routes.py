@@ -103,12 +103,48 @@ def get_raza_dog(raza_dog_id):
 
 @api.route('/question', methods=['GET'])
 def get_question():
-    question = Question.query.filter().all()
+    question = Question.query.join(Answer).filter().all()
+    # question.join(Answer)
     result = list(map(lambda question: question.serialize(), question))
     response_body = {
         "Usuarios": result,
         "msg": "Hello, this is your GET /question response "
     }
+    return jsonify(response_body), 200
+
+
+@api.route('/user/<int:user_id>/sugerencia/', methods=['GET'])
+def get_sugerencia(user_id):
+    # obtener el id del usuario logueado
+    usuario_query = User.query.get(user_id)
+    # Cargar las respuestas del usuario
+    response_user = Answer.query.filter().all()
+    answer_user = list(
+        map(lambda response_user: response_user.serialize(), response_user))
+    print(answer_user)
+    # Cargar la lista de perros / variables que almacene todos los perros
+    response_dogs = Sabias_que.query.filter().all()
+    sabiasque_dog = list(
+        map(lambda reponse_dogs: response_dogs.serialize(), response_dogs))
+    print(sabiasque_dog)
+
+    # Definir arreglo de resultados / una tipo arreglo o lista
+    coinciden = []
+    # iterar sobre cada perro y las respuestas del usuario
+    response_body = {
+        "Usuarios": answer_user,
+        "Sabias_que": sabiasque_dog,
+        "msg": "Estas son las respuestas "
+    }
+    # Si coinciden. 1 ? 0
+    # devolver los perros los x primeros
+    """ for i in answer_user:
+        print(i)
+        for j in response_dogs:
+            print(j) """
+            # if answer_user == response_dogs:
+                
+
     return jsonify(response_body), 200
 
 
@@ -170,13 +206,13 @@ def get_resultsid(results_id):
 @api.route('/user/<int:user_id>/addresult/<int:answer_id>', methods=['POST'])
 def add_result(user_id, answer_id):
     usuario_query = User.query.get(user_id)
-    #print(user_id)
-    #json = request.get_json()
-    #json = Answer.query.get(answer_id)
-    #json = Answer.query.filter()
-    #print(json)
-    valorid = Answer.query.get(answer_id)
-    resul0 = json.get("result_0")
+    # print(user_id)
+    json = request.get_json()
+    # json = Answer.query.get(answer_id)
+    # json = Answer.query.filter()
+    # print(json)
+    # valorid = Answer.query.get(answer_id)
+    resul0 = json.get("valorid")
     resul1 = json.get("result_1")
     resul2 = json.get("result_2")
     resul3 = json.get("result_3")
@@ -189,8 +225,9 @@ def add_result(user_id, answer_id):
     resul10 = json.get("result_10")
     resul11 = json.get("result_11")
     result_answer = Results(
-        user_id=usuario_query.id, answer_id=int(answer_id),result_0 = resul0 ,result_1= resul1,result_2= resul2,result_3= resul3,result_4= resul4,result_5= resul5
-        ,result_6= resul6,result_7= resul7,result_8= resul8,result_9= resul9,result_10= resul10,result_11= resul11)
+        user_id=usuario_query.id, answer_id=int(answer_id), result_0=resul0, result_1=resul1,
+        result_2=resul2, result_3=resul3, result_4=resul4, result_5=resul5, result_6=resul6,
+        result_7=resul7, result_8=resul8, result_9=resul9, result_10=resul10, result_11=resul11)
     db.session.add(result_answer)
     db.session.commit()
     response_body = {"msg": "Resultado agregado"}
@@ -240,6 +277,7 @@ def get_resp_sabiasqueid(resp_sabiasque_id):
         "Usuarios": resp_sabiasqueid
     }
     return jsonify(resp_sabiasqueid.serialize()), 200
+
 
 """ @api.route('/user/<int:user_id>/addresp/<int:answer_id>/', methods=['POST'])
 def add_result(user_id, answer_id):

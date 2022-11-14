@@ -27,10 +27,10 @@ const getState = ({ getStore, getActions, setStore }) => {
     ],
       answer: [
         {
-          answer1: "No importa",
+          answer1: "No importa", 
           answer2: "No, este será mi primer perro y tengo ganas de aprender",
-          answer3: "He cuidado perros antes, asi que tengo algo de experiencia",
-          answer4: "Si. Soy un dueño con mucha experiencia"
+          answer3: "He cuidado perros antes, asi que tengo algo de experiencia", 
+          answer4: "Si. Soy un dueño con mucha experiencia" 
         },
         {
           answer1: "No importa",
