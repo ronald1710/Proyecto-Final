@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import imagen_login from "./../../img/fondo_imagen.jpg";
+import imagen_login from "./../../img/fondo_login.jpg";
+import perro_login from "./../../img/perro_login.png";
 import { useNavigate } from "react-router-dom";
 import "../../styles/login.css";
 import { Link } from "react-router-dom";
@@ -15,6 +16,7 @@ export const Login = () => {
     actions.login(email, password).then((resp) => {
       if (resp) {
         navigate("/favoritos");
+        window.location.reload(false);
       }
     });
   };
@@ -23,9 +25,10 @@ export const Login = () => {
     // <Navbar />
     <div
       id="div_fondo"
-      style={{ backgroundImage: `url(${imagen_login})`, height: "480px" }}
+      style={{ backgroundImage: `url(${imagen_login})`, height: "500px" }}
       className=" "
     >
+
       <div className=" pt-2">
         <h1 className="m-5 text-white">Login</h1>
         <div className="m-5">
@@ -69,8 +72,18 @@ export const Login = () => {
                 Registrarse
               </button>
             </Link>
+
           </div>
         </div>
+        <div
+          id="perro_login"
+          className="col d-none d-md-block"
+          style={{
+            backgroundImage: `url(${perro_login})`,
+            backgroundRepeat: "no-repeat",
+            height: "auto",
+          }}
+        ></div>
       </div>
     </div>
   );

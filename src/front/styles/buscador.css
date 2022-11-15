@@ -1,4 +1,6 @@
-#preguntas {
-  width: 65%;
-  float: right;
+#intro {
+  background: rgb(211, 209, 209);
+  padding: 4px;
+  border-radius: 15px;
+  box-shadow: 17px 17px 15px gray;
 }

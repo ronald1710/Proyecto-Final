@@ -28,7 +28,7 @@ class User(db.Model):
 class Dogs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     raza_dog = db.Column(db.String(120), unique=True, nullable=False)
-
+    img_dog = db.Column(db.String(300), unique=True, nullable=False)
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
@@ -37,8 +37,8 @@ class Dogs(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.raza_dog,
-
+            "raza_dog": self.raza_dog,
+            "img_dog": self.img_dog,
             # do not serialize the password, its a security breach
         }
 
@@ -48,8 +48,8 @@ class User_dogFavorite(db.Model):
     name = db.Column(db.String(120), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     dogs_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
-    """ user = db.relationship(User)
-    dogs = db.relationship(Dogs) """
+    user = db.relationship(User)
+    dogs = db.relationship(Dogs)
 
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
@@ -78,7 +78,7 @@ class Razas_dogs(db.Model):
     aseo = db.Column(db.String(1000), nullable=False)
     raza_nino = db.Column(db.String(1000), nullable=False)
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
-    """ dog = db.relationship(Dogs) """
+    dog = db.relationship(Dogs)
 
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
@@ -120,7 +120,16 @@ class Question(db.Model):
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # Falta hacerlo multilinestring
-    answer = db.Column(db.String(250), unique=True, nullable=False)
+    answer1 = db.Column(db.String(250), unique=True, nullable=False)
+    # Falta hacerlo multilinestring
+    answer2 = db.Column(db.String(250), unique=True, nullable=False)
+    # Falta hacerlo multilinestring
+    answer3 = db.Column(db.String(250), unique=True, nullable=False)
+    # Falta hacerlo multilinestring
+    answer4 = db.Column(db.String(250), unique=True, nullable=False)
+    # Falta hacerlo multilinestring
+    answer5 = db.Column(db.String(250), unique=True, nullable=False)
+    # Falta hacerlo multilinestring
     question_id = db.Column(db.Integer, db.ForeignKey("question.id"))
     question = db.relationship(Question)
 
@@ -130,7 +139,13 @@ class Answer(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "answer": self.answer,
+            "answer1": self.answer1,
+            "answer2": self.answer2,
+            "answer3": self.answer3,
+            "answer4": self.answer4,
+            "answer5": self.answer5,
+
+
             # do not serialize the password, its a security breach
         }
 
@@ -151,8 +166,8 @@ class Results(db.Model):
     result_11 = db.Column(db.String(50), unique=True, nullable=False)
     answer_id = db.Column(db.Integer, db.ForeignKey("answer.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    """ answer = db.relationship(Answer)
-    user = db.relationship(User) """
+    answer = db.relationship(Answer)
+    user = db.relationship(User)
 
     def __repr__(self):
         return f'<Results {self.id}>'
@@ -179,22 +194,22 @@ class Results(db.Model):
 # ---------------------------Logica----------------------------
 class Sabias_que(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    experiencia = db.Column(db.String(50), unique=True, nullable=False)
-    adiestramiento = db.Column(db.String(50), unique=True, nullable=False)
-    paseos = db.Column(db.String(50), unique=True, nullable=False)
-    tiempo_paseo = db.Column(db.String(50), unique=True, nullable=False)
-    tamano = db.Column(db.String(50), unique=True, nullable=False)
-    babeo = db.Column(db.String(50), unique=True, nullable=False)
-    aseo = db.Column(db.String(50), unique=True, nullable=False)
-    hipoalergenica = db.Column(db.String(50), unique=True, nullable=False)
-    ladrador = db.Column(db.String(50), unique=True, nullable=False)
-    guardian = db.Column(db.String(50), unique=True, nullable=False)
-    entre_otroPerros = db.Column(db.String(50), unique=True, nullable=False)
-    perro_familiar = db.Column(db.String(50), unique=True, nullable=False)
+    experiencia = db.Column(db.String(50), nullable=False)
+    adiestramiento = db.Column(db.String(50), nullable=False)
+    paseos = db.Column(db.String(50), nullable=False)
+    tiempo_paseo = db.Column(db.String(50), nullable=False)
+    tamano = db.Column(db.String(50), nullable=False)
+    babeo = db.Column(db.String(50), nullable=False)
+    aseo = db.Column(db.String(50), nullable=False)
+    hipoalergenica = db.Column(db.String(50), nullable=False)
+    ladrador = db.Column(db.String(50), nullable=False)
+    guardian = db.Column(db.String(50), nullable=False)
+    entre_otroperros = db.Column(db.String(50), nullable=False)
+    perro_familiar = db.Column(db.String(50), nullable=False)
     results_id = db.Column(db.Integer, db.ForeignKey("results.id"))
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
-    """ results = db.relationship(Results)
-    dogs = db.relationship(Dogs) """
+    results = db.relationship(Results)
+    dogs = db.relationship(Dogs)
 
     def __repr__(self):
         return f'<Sabias_que {self.id}>'
@@ -212,7 +227,7 @@ class Sabias_que(db.Model):
             "hipoalergenica": self.hipoalergenica,
             "ladrador": self.ladrador,
             "guardian": self.guardian,
-            "entre_otroPerros": self.entre_otroPerros,
+            "entre_otroperros": self.entre_otroperros,
             "perro_familiar": self.result_10,
 
             # do not serialize the password, its a security breach
@@ -236,9 +251,9 @@ class Resp_SabiasQue(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     sabiasque_id = db.Column(db.Integer, db.ForeignKey("sabias_que.id"))
-    """ user = db.relationship(User)
+    user = db.relationship(User)
     dogs = db.relationship(Dogs)
-    sabiasque= db.relationship(Sabias_que) """
+    sabiasque = db.relationship(Sabias_que)
 
     def __repr__(self):
         return f'<Resp_SabiasQue {self.id}>'

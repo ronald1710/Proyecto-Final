@@ -16,6 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         },
       ],
       biblioteca: [],
+      raza: [],
+      razaIndividual: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -97,6 +99,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.error(err));
       },
+      loadSomeData: () => {
+        fetch(process.env.BACKEND_URL + "/dogs")
+          .then((resp) => resp.json())
+          .then((resp) => {
+            console.log(resp);
+            setStore({ raza: resp.Usuarios });
+          })
+          .catch((err) => console.error(err));
+      },
       changeColor: (index, color) => {
         //get the store
         const store = getStore();
@@ -111,6 +122,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         //reset the global store
         setStore({ demo: demo });
       },
+    },
+    informacionIndividualPeople: (id) => {
+      fetch(process.env.BACKEND_URL + "/biblioteca_individual/" + id)
+        .then((resp) => resp.json())
+        .then((resp) => setStore({ razaIndividual: resp.Usuarios }))
+        .catch((err) => console.error(err));
     },
   };
 };
