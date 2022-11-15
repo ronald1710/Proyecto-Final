@@ -3,6 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, send_from_directory
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
@@ -12,8 +13,12 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
+import smtplib
+import ssl
+
 
 #from models import Person
+
 
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(
@@ -22,6 +27,28 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.config["JWT_SECRET_KEY"] = "asdfghhtgadfsfg"
 Jwt = JWTManager(app)
+
+# confuguracion email
+#mail = mypetfriendf@gmail.com
+# password = perritos123 ***ahora con 2fa para seguridad la password es lcqwkbumcbotlngy
+
+mail_settings = {
+    "MAIL_SERVER": 'smtp.office365.com',
+    "MAIL_PORT": 587,
+    "MAIL_USE_TLS": True,
+    "MAIL_USE_SSL": True,
+    "MAIL_USERNAME": 'mypetfriend1@outlook.com',
+    "MAIL_PASSWORD": 'perritos123',
+    "MAIL_DEFAULT_SENDER": 'mypetfriend1@outlook.com',
+    # MAIL_MAX_EMAILS : default None
+    # MAIL_SUPPRESS_SEND : default app.testing
+    # MAIL_ASCII_ATTACHMENTS : default False
+}
+
+app.config.update(mail_settings)
+mail = Mail(app)
+# se agrega mail a la app y se va a llamar en routes.py como current_app
+app.mail = mail
 
 
 # database condiguration
