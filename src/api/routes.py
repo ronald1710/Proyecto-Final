@@ -125,12 +125,13 @@ def get_sugerencia(user_id):
     # Cargar la lista de perros / variables que almacene todos los perros
     response_dogs = Sabias_que.query.filter().all()
     sabiasque_dog = list(
-        map(lambda reponse_dogs: response_dogs.serialize(), response_dogs))
-    print(sabiasque_dog)
+        map(lambda reponse_dogs: response_dogs, response_dogs))
+    #print(sabiasque_dog)
 
     # Definir arreglo de resultados / una tipo arreglo o lista
     coinciden = []
     # iterar sobre cada perro y las respuestas del usuario
+
     response_body = {
         "Usuarios": answer_user,
         "Sabias_que": sabiasque_dog,

@@ -110,7 +110,7 @@ class Razas_dogs(db.Model):
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(250), unique=True, nullable=False)
-    children = db.relationship("Answer")
+    #children = db.relationship("Answer")
 
     def __repr__(self):
         return f'<Question {self.id}>'
@@ -188,18 +188,18 @@ class Results(db.Model):
 # ---------------------------Logica----------------------------
 class Sabias_que(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    experiencia = db.Column(db.ARRAY(db.String[1][5]))
-    adiestramiento = db.Column(db.ARRAY(db.String[1][5]))
-    paseos = db.Column(db.ARRAY(db.String[1][5]))
-    tiempo_paseo = db.Column(db.ARRAY(db.String[1][5]))
-    tamano = db.Column(db.ARRAY(db.String[1][5]))
-    babeo = db.Column(db.ARRAY(db.String[1][5]))
-    aseo = db.Column(db.ARRAY(db.String[1][5]))
-    hipoalergenica = db.Column(db.ARRAY(db.String[1][5]))
-    ladrador = db.Column(db.ARRAY(db.String[1][5]))
-    guardian = db.Column(db.ARRAY(db.String[1][5]))
-    entre_otroPerros = db.Column(db.ARRAY(db.String[1][5]))
-    perro_familiar = db.Column(db.ARRAY(db.String[1][5]))
+    experiencia = db.Column(db.String(50))
+    adiestramiento = db.Column(db.String(50))
+    paseos = db.Column(db.String(50))
+    tiempo_paseo = db.Column(db.String(50))
+    tamano = db.Column(db.String(50))
+    babeo = db.Column(db.String(50))
+    aseo = db.Column(db.String(50))
+    hipoalergenica = db.Column(db.String(50))
+    ladrador = db.Column(db.String(50))
+    guardian = db.Column(db.String(50))
+    entre_otroPerros = db.Column(db.String(50))
+    perro_familiar = db.Column(db.String(50))
     results_id = db.Column(db.Integer, db.ForeignKey("results.id"))
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     results = db.relationship(Results)
