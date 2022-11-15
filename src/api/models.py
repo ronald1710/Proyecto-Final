@@ -69,8 +69,8 @@ class Favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     dogs_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
-    user = db.relationship('User', back_populates='user')
-    dogs = db.relationship('Dogs', back_populates='dogs')
+    user = db.relationship(User)
+    dogs = db.relationship(Dogs)
 
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
