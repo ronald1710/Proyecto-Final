@@ -125,7 +125,7 @@ class Question(db.Model):
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    answer1 = db.Column(db.ARRAY(db.String[1][5]))# Falta hacerlo multilinestring
+    answer1 = db.Column(db.String(50))# Falta hacerlo multilinestring
     #answer2 = db.Column(db.String(50))# Falta hacerlo multilinestring
     #answer3 = db.Column(db.String(50))# Falta hacerlo multilinestring
     #answer4 = db.Column(db.String(50))# Falta hacerlo multilinestring

@@ -119,14 +119,15 @@ def get_sugerencia(user_id):
     usuario_query = User.query.get(user_id)
     # Cargar las respuestas del usuario
     response_user = Answer.query.filter().all()
+    print(response_user)
     answer_user = list(
         map(lambda response_user: response_user.serialize(), response_user))
     print(answer_user)
     # Cargar la lista de perros / variables que almacene todos los perros
     response_dogs = Sabias_que.query.filter().all()
     sabiasque_dog = list(
-        map(lambda reponse_dogs: response_dogs, response_dogs))
-    #print(sabiasque_dog)
+        map(lambda reponse_dogs: response_dogs.serialize(), response_dogs))
+    print(sabiasque_dog)
 
     # Definir arreglo de resultados / una tipo arreglo o lista
     coinciden = []
