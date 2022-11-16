@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5a0fad81e6c3
+Revision ID: 011851a8a045
 Revises: 
-Create Date: 2022-11-12 23:12:33.860950
+Create Date: 2022-11-15 22:59:49.404343
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5a0fad81e6c3'
+revision = '011851a8a045'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -42,7 +42,7 @@ def upgrade():
     )
     op.create_table('answer',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('answer1', sa.ARRAY(sa.String()), nullable=True),
+    sa.Column('answer1', sa.String(length=100), nullable=False),
     sa.Column('question_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['question_id'], ['question.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -105,35 +105,23 @@ def upgrade():
     )
     op.create_table('sabias_que',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('experiencia', sa.String(length=50), nullable=False),
-    sa.Column('adiestramiento', sa.String(length=50), nullable=False),
-    sa.Column('paseos', sa.String(length=50), nullable=False),
-    sa.Column('tiempo_paseo', sa.String(length=50), nullable=False),
-    sa.Column('tamano', sa.String(length=50), nullable=False),
-    sa.Column('babeo', sa.String(length=50), nullable=False),
-    sa.Column('aseo', sa.String(length=50), nullable=False),
-    sa.Column('hipoalergenica', sa.String(length=50), nullable=False),
-    sa.Column('ladrador', sa.String(length=50), nullable=False),
-    sa.Column('guardian', sa.String(length=50), nullable=False),
-    sa.Column('entre_otroPerros', sa.String(length=50), nullable=False),
-    sa.Column('perro_familiar', sa.String(length=50), nullable=False),
+    sa.Column('experiencia', sa.String(length=50), nullable=True),
+    sa.Column('adiestramiento', sa.String(length=50), nullable=True),
+    sa.Column('paseos', sa.String(length=50), nullable=True),
+    sa.Column('tiempo_paseo', sa.String(length=50), nullable=True),
+    sa.Column('tamano', sa.String(length=50), nullable=True),
+    sa.Column('babeo', sa.String(length=50), nullable=True),
+    sa.Column('aseo', sa.String(length=50), nullable=True),
+    sa.Column('hipoalergenica', sa.String(length=50), nullable=True),
+    sa.Column('ladrador', sa.String(length=50), nullable=True),
+    sa.Column('guardian', sa.String(length=50), nullable=True),
+    sa.Column('entre_otroPerros', sa.String(length=50), nullable=True),
+    sa.Column('perro_familiar', sa.String(length=50), nullable=True),
     sa.Column('results_id', sa.Integer(), nullable=True),
     sa.Column('dog_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['dog_id'], ['dogs.id'], ),
     sa.ForeignKeyConstraint(['results_id'], ['results.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('adiestramiento'),
-    sa.UniqueConstraint('aseo'),
-    sa.UniqueConstraint('babeo'),
-    sa.UniqueConstraint('entre_otroPerros'),
-    sa.UniqueConstraint('experiencia'),
-    sa.UniqueConstraint('guardian'),
-    sa.UniqueConstraint('hipoalergenica'),
-    sa.UniqueConstraint('ladrador'),
-    sa.UniqueConstraint('paseos'),
-    sa.UniqueConstraint('perro_familiar'),
-    sa.UniqueConstraint('tamano'),
-    sa.UniqueConstraint('tiempo_paseo')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('resp__sabias_que',
     sa.Column('id', sa.Integer(), nullable=False),

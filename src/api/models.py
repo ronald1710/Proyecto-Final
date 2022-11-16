@@ -146,18 +146,18 @@ class Answer(db.Model):
 
 class Results(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    result_0 = db.Column(db.String(50), unique=True, nullable=False)
-    result_1 = db.Column(db.String(50), unique=True, nullable=False)
-    result_2 = db.Column(db.String(50), unique=True, nullable=False)
-    result_3 = db.Column(db.String(50), unique=True, nullable=False)
-    result_4 = db.Column(db.String(50), unique=True, nullable=False)
-    result_5 = db.Column(db.String(50), unique=True, nullable=False)
-    result_6 = db.Column(db.String(50), unique=True, nullable=False)
-    result_7 = db.Column(db.String(50), unique=True, nullable=False)
-    result_8 = db.Column(db.String(50), unique=True, nullable=False)
-    result_9 = db.Column(db.String(50), unique=True, nullable=False)
-    result_10 = db.Column(db.String(50), unique=True, nullable=False)
-    result_11 = db.Column(db.String(50), unique=True, nullable=False)
+    result_0 = db.Column(db.String(50), nullable=False)
+    result_1 = db.Column(db.String(50), nullable=False)
+    result_2 = db.Column(db.String(50), nullable=False)
+    result_3 = db.Column(db.String(50), nullable=False)
+    result_4 = db.Column(db.String(50), nullable=False)
+    result_5 = db.Column(db.String(50), nullable=False)
+    result_6 = db.Column(db.String(50), nullable=False)
+    result_7 = db.Column(db.String(50), nullable=False)
+    result_8 = db.Column(db.String(50), nullable=False)
+    result_9 = db.Column(db.String(50), nullable=False)
+    result_10 = db.Column(db.String(50), nullable=False)
+    result_11 = db.Column(db.String(50), nullable=False)
     answer_id = db.Column(db.Integer, db.ForeignKey("answer.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     answer = db.relationship(Answer)
@@ -223,7 +223,9 @@ class Sabias_que(db.Model):
             "ladrador": self.ladrador,
             "guardian": self.guardian,
             "entre_otroPerros": self.entre_otroPerros,
-            "perro_familiar": self.result_10,
+            "perro_familiar": self.perro_familiar,
+            "dog_id": self.dog_id
+            
 
             # do not serialize the password, its a security breach
         }

@@ -120,22 +120,20 @@ def get_sugerencia(user_id):
     # Cargar las respuestas del usuario
     response_user = Answer.query.filter().all()
     print(response_user)
-    answer_user = list(
+    result1 = list(
         map(lambda response_user: response_user.serialize(), response_user))
-    print(answer_user)
+    
     # Cargar la lista de perros / variables que almacene todos los perros
-    response_dogs = Sabias_que.query.filter().all()
-    sabiasque_dog = list(
-        map(lambda reponse_dogs: response_dogs.serialize(), response_dogs))
-    print(sabiasque_dog)
-
+    sabias_que = Sabias_que.query.filter().all()
+    result2 = list(map(lambda sabias_que: sabias_que.serialize(), sabias_que))
     # Definir arreglo de resultados / una tipo arreglo o lista
     coinciden = []
-    # iterar sobre cada perro y las respuestas del usuario
+    # iterar sobre cada perro y compararlo con las respuestas del usuario
+    
 
     response_body = {
-        "Usuarios": answer_user,
-        "Sabias_que": sabiasque_dog,
+        "Usuarios": result1,
+        "Sabias_que": result2,
         "msg": "Estas son las respuestas "
     }
     # Si coinciden. 1 ? 0
