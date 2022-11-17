@@ -15,7 +15,11 @@ export const Signup = () => {
   const navigate = useNavigate();
   const handleClick = (e) => {
     e.preventDefault(); /* este comando evita que se rompa la pagina */
-    if (password == repeat_password) {
+    if (name == "") {
+      Swal.fire("Error en el nombre", "Nombre de usuario vacio", "error");
+    } else if (email == "") {
+      Swal.fire("Error en el email", "Email vacio o incorrecto", "error");
+    } else if (password == repeat_password && password != "") {
       actions
         .signup({ email: email, password: password, name: name })
         .then((resp) => {
