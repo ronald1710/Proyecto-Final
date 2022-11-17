@@ -13,24 +13,18 @@ export const Signup = () => {
   const [password, setPassword] = useState("");
   const [repeat_password, setRepeat_password] = useState("");
   const navigate = useNavigate();
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault(); /* este comando evita que se rompa la pagina */
     if (name == "") {
       Swal.fire("Error en el nombre", "Nombre de usuario vacio", "error");
     } else if (email == "") {
       Swal.fire("Error en el email", "Email vacio o incorrecto", "error");
     } else if (password == repeat_password && password != "") {
-      actions
-        .signup({ email: email, password: password, name: name })
-        .then((resp) => {
-          alert("Todo OK");
-          if (resp) {
-            navigate("/favoritos");
-          }
-        })
-        .catch((er) => {
-          Swal.fire("Ocurrio un error", "Este correo ya existe", "error");
-        });
+      let aux = await actions.signup({
+        email: email,
+        password: password,
+        name: name,
+      });
     } else {
       Swal.fire(
         "Error en la contraseña",
