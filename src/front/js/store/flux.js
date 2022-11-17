@@ -74,6 +74,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((resp) => resp.json())
           .then(() => {
             Swal.fire("Registro exitoso", "Gracias por elegirnos", "success");
+            window.location.href = "/login";
+            return true;
           });
       },
       reset_password: (body) => {
