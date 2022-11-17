@@ -81,6 +81,17 @@ def add_FavDog(user_id, dogs_id):
     return jsonify(response_body), 200 """
 
 
+@api.route('/add_favorite/<int:user_id>/<int:dogs_id>/', methods=['POST'])
+def add_FavDog(user_id, dogs_id):
+    user_id = int(user_id)
+    dogs_id = int(dogs_id)
+    new_favorite_dog = Favorites(user_id=user_id, dogs_id=dogs_id)
+    db.session.add(new_favorite_dog)
+    db.session.commit()
+    response_body = {"msg": "Favorito agregado"}
+    return jsonify(response_body), 200
+
+
 @api.route('/sendEmail', methods=['POST'])
 def send_email():
     email = request.json.get("email", None)
