@@ -14,8 +14,9 @@ export const Card_biblioteca = (props) => {
       }
     });
   };*/
+  console.log(props);
   return (
-    <div class="col">
+    <div className="col">
       <div className="card m-2" style={{ width: "18rem", height: "405px" }}>
         <img
           src={props.img_dog}
@@ -24,9 +25,15 @@ export const Card_biblioteca = (props) => {
         />
         <div className="card-body">
           <h5 className="card-title text-center">{props.raza_dog}</h5>
-          <a href="#" className="btn btn-primary">
-            Ver mas...
-          </a>
+          <div>
+            <Link
+              to={`/biblioteca_individual/${props.id}`}
+              relative="path"
+              className="btn btn-primary"
+            >
+              Ver mas...
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -123,8 +123,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ demo: demo });
       },
     },
-    informacionIndividualPeople: (id) => {
-      fetch(process.env.BACKEND_URL + "/biblioteca_individual/" + id)
+    informacionIndividualDogs: (id) => {
+      fetch(process.env.BACKEND_URL + "/dogs/" + "id")
         .then((resp) => resp.json())
         .then((resp) => setStore({ razaIndividual: resp.Usuarios }))
         .catch((err) => console.error(err));

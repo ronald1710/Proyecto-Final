@@ -11,9 +11,9 @@ export const Info_individual = (props) => {
     <div className="container text-center">
       <div className="row align-items-center">
         <div className="col m-2 ">
-          <img src="" alt="imagen del perro"></img>
+          <img src={props.img_dog} alt={props.raza_dog}></img>
         </div>
-        <div className="col m-2">nombre de la raza</div>
+        <div className="col m-2">{props.raza_dog}</div>
       </div>
       <div className="row align-items-center">
         <div className="col m-2">
