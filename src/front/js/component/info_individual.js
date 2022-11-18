@@ -18,7 +18,7 @@ export const Info_individual = (props) => {
       <div className="row align-items-center">
         <div className="col m-2">
           <h1>Descripción</h1>
-          <p>Descripción aqui</p>
+          <p>{props.descripcion}</p>
         </div>
         <div className="col m-2">
           <img src="" alt="imagen de Descripción"></img>

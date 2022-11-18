@@ -18,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       biblioteca: [],
       raza: [],
       razaIndividual: [],
+      razaIndividual2: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -89,7 +90,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             Swal.fire("Registro exitoso", "Gracias por elegirnos", "success");
           });
       },
-
       loadSomeData: () => {
         fetch(process.env.BACKEND_URL + "/razas_dogs")
           .then((resp) => resp.json())
@@ -122,12 +122,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         //reset the global store
         setStore({ demo: demo });
       },
-    },
-    informacionIndividualDogs: (id) => {
-      fetch(process.env.BACKEND_URL + "/dogs/" + "id")
-        .then((resp) => resp.json())
-        .then((resp) => setStore({ razaIndividual: resp.Usuarios }))
-        .catch((err) => console.error(err));
+      informacionIndividualDogs: (id) => {
+        fetch(process.env.BACKEND_URL + "/dogs/" + id)
+          .then((resp) => resp.json())
+          .then((resp) => {
+            setStore({ razaIndividual: resp });
+            fetch(process.env.BACKEND_URL + "/razas_dogs/" + id)
+              .then((resp2) => resp2.json())
+              .then((data) => {
+                //si todo sabe bien sale la info
+                setStore({ razaIndividual2: data });
+              });
+          })
+          .catch((err) => console.error(err));
+      },
     },
   };
 };
