@@ -115,48 +115,68 @@ def get_question():
 
 @api.route('/user/<int:user_id>/sugerencia/', methods=['GET'])
 def get_sugerencia(user_id):
-    # obtener el id del usuario logueado
-    usuario_query = User.query.get(user_id)
-    # Cargar las respuestas del usuario
-    count_answer = Answer.query.count()
-    response_user = Answer.query.filter().all()
-    result1 = list(
-        map(lambda response_user: response_user.serialize(), response_user))
 
-    # Cargar la lista de perros / variables que almacene todos los perros
-    sabias_que = Sabias_que.query.filter().all()
-    print(sabias_que)
-    count_sabiasQue = Sabias_que.query.count()
-    result2 = list(map(lambda sabias_que: sabias_que.serialize(), sabias_que))
-    # Definir arreglo de resultados / una tipo arreglo o lista
-    coinciden = []
-    
-    # iterar sobre cada perro y compararlo con las respuestas del usuario
+    answer = Answer.query.filter_by(user_id=user_id).all()
+    user_answer = list(
+        map(lambda answer: answer.serialize(), answer))
 
-    """ ans = Answer.query.get(1)
-    a = Sabias_que.query.filter(Sabias_que.experiencia)
-    print(ans) """
-    
-    
-    
-    
-    
+    sugerencia = []
+    for x in user_answer:
+        sabias_que = Sabias_que.query.filter_by(answer_id=x["id"]).all()
+        result = list(map(lambda sabias_que: sabias_que.serialize(), sabias_que))
+        
+        respuesta = {}
+        if x["id"] == 1:
+            respuesta = {'experiencia':result[0]["experiencia"].__contains__(x['answer1'])}
+            a = 5
+            if a > 6:
+                sugerencia.append(respuesta)
+            print(a)     
+            break
+        elif x["id"] == 2:  
+            respuesta = {'adiestramiento':sabias_que[1]["adiestramiento"].__contains__(x['answer1'])}
+        elif x["id"] == 3:  
+            respuesta = {'paseos':result[2]["paseos"].__contains__(x['answer1'])}
+        elif x["id"] == 4:  
+            respuesta = {'tiempo_paseo':result[3]["tiempo_paseo"].__contains__(x['answer1'])}
+        elif x["id"] == 5:  
+            respuesta = {'tamano':result[4]["tamano"].__contains__(x['answer1'])}
+        elif x["id"] == 6:  
+            respuesta = {'babeo':result[5]["babeo"].__contains__(x['answer1'])}
+        elif x["id"] == 7:  
+            respuesta = {'aseo':result[6]["aseo"].__contains__(x['answer1'])}
+        elif x["id"] == 8:  
+            respuesta = {'hipoalergenico':result[7]["hipoalergenico"].__contains__(x['answer1'])}
+        elif x["id"] == 9:  
+            respuesta = {'ladrador':result[8]["ladrador"].__contains__(x['answer1'])}
+        elif x["id"] == 10:  
+            respuesta = {'guardian':result[9]["guardian"].__contains__(x['answer1'])}
+        elif x["id"] == 11:  
+            respuesta = {'entre_otroPerros':result[10]["entre_otroPerros"].__contains__(x['answer1'])}
+        elif x["id"] == 12:  
+            respuesta = {'perro_familiar':result[11]["perro_familiar"].__contains__(x['answer1'])}
+        
 
-    response_body = {
-        "Usuarios": result1,
-        "Sabias_que": result2,
-        "msg": "Estas son las respuestas "
-    }
-    # Si coinciden. 1 ? 0
-    # devolver los perros los x primeros
-    """ for i in answer_user:
-        print(i)
-        for j in response_dogs:
-            print(j) """
-    # if answer_user == response_dogs:
 
-    return jsonify(response_body), 200
+        sugerencia.append(respuesta)
 
+    return jsonify(sugerencia), 200
+
+
+""" final_result = []
+for x in user_answer:
+    #sabias_que = Sabias_que.query.filter_by(answer_id=x.id).all()
+    #sabias = list(
+    #    map(lambda sabias_que: sabias_que.serialize(), sabias_que))
+    respuesta = {} 
+    if x["id"] == 1:
+            respuesta ={ 'experiencia': sabias[0]["experiencia"].__contains__(x['answer1'])}
+    elif x["id"] == 2:
+            respuesta= {'adiestramiento': False}
+     
+    
+    final_result.append(respuesta)
+print(final_result) """
 
 @api.route('/question/<int:question_id>', methods=['GET'])
 def get_questionid(question_id):

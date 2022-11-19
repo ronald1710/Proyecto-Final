@@ -130,8 +130,11 @@ class Answer(db.Model):
     #answer3 = db.Column(db.String(50))# Falta hacerlo multilinestring
     #answer4 = db.Column(db.String(50))# Falta hacerlo multilinestring
     #answer5 = db.Column(db.String(50))# Falta hacerlo multilinestring
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     question_id = db.Column(db.Integer, db.ForeignKey("question.id"))
     question = db.relationship(Question)
+    user = db.relationship(User)
+
 
     def __repr__(self):
         return f'<Answer {self.id}>'
@@ -200,9 +203,9 @@ class Sabias_que(db.Model):
     guardian = db.Column(db.String(50))
     entre_otroPerros = db.Column(db.String(50))
     perro_familiar = db.Column(db.String(50))
-    results_id = db.Column(db.Integer, db.ForeignKey("results.id"))
+    answer_id = db.Column(db.Integer, db.ForeignKey("answer.id"))
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
-    results = db.relationship(Results)
+    results = db.relationship(Answer)
     dogs = db.relationship(Dogs)
     
 

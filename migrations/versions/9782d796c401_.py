@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 011851a8a045
+Revision ID: 9782d796c401
 Revises: 
-Create Date: 2022-11-15 22:59:49.404343
+Create Date: 2022-11-19 01:35:59.015824
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '011851a8a045'
+revision = '9782d796c401'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -43,8 +43,10 @@ def upgrade():
     op.create_table('answer',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('answer1', sa.String(length=100), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('question_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['question_id'], ['question.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('razas_dogs',
@@ -89,19 +91,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['answer_id'], ['answer.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('result_0'),
-    sa.UniqueConstraint('result_1'),
-    sa.UniqueConstraint('result_10'),
-    sa.UniqueConstraint('result_11'),
-    sa.UniqueConstraint('result_2'),
-    sa.UniqueConstraint('result_3'),
-    sa.UniqueConstraint('result_4'),
-    sa.UniqueConstraint('result_5'),
-    sa.UniqueConstraint('result_6'),
-    sa.UniqueConstraint('result_7'),
-    sa.UniqueConstraint('result_8'),
-    sa.UniqueConstraint('result_9')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('sabias_que',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -117,10 +107,10 @@ def upgrade():
     sa.Column('guardian', sa.String(length=50), nullable=True),
     sa.Column('entre_otroPerros', sa.String(length=50), nullable=True),
     sa.Column('perro_familiar', sa.String(length=50), nullable=True),
-    sa.Column('results_id', sa.Integer(), nullable=True),
+    sa.Column('answer_id', sa.Integer(), nullable=True),
     sa.Column('dog_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['answer_id'], ['answer.id'], ),
     sa.ForeignKeyConstraint(['dog_id'], ['dogs.id'], ),
-    sa.ForeignKeyConstraint(['results_id'], ['results.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('resp__sabias_que',
