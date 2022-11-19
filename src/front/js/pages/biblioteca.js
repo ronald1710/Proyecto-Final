@@ -24,6 +24,7 @@ export const Biblioteca = () => {
           {store.raza.map((element, i) => {
             return (
               <Card_biblioteca
+                id={element.id}
                 img_dog={element.img_dog}
                 raza_dog={element.raza_dog}
               />

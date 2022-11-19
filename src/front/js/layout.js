@@ -32,7 +32,8 @@ const Layout = () => {
             <Route element={<Biblioteca />} path="/biblioteca" />
             <Route
               element={<Biblioteca_individual />}
-              path="/biblioteca_individual"
+              exact
+              path="/biblioteca_individual/:theid"
             />
             <Route element={<Login />} path="/login" />
             <Route element={<Forgot_password />} path="/forgotpassword" />
