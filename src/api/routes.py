@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 
 from flask import Flask, request, jsonify, url_for, Blueprint, current_app
-from api.models import db, User, Dogs, User_dogFavorite, Razas_dogs
+from api.models import db, User, Dogs, User_dogFavorite, Razas_dogs, Favorites
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask_mail import Message
@@ -70,15 +70,41 @@ def get_dog(dogs_id):
     return jsonify(dog.serialize()), 200
 
 
-""" @api.route('/user/<int:user_id>/addfavoritedog/<int:dogs_id>/', methods=['POST'])
-def add_FavDog(user_id, dogs_id):
+@api.route('/favoritedogs/', methods=['GET'])
+def get_favoritedogs():
+    favoritedogs = Favorites.query.filter().all()
+    result = list(
+        map(lambda favoritedogs: favoritedogs.serialize(), favoritedogs))
+    if not result:
+        return jsonify({"msg": "Usuario no tiene favoritos"})
+    response_body = {
+        "Usuarios": result
+    }
+    return jsonify(response_body), 200
+
+
+@api.route('/user/<int:user_id>/addmydog/<int:dogs_id>/', methods=['POST'])
+def add_MyDog(user_id, dogs_id):
     user_query = User.query.get(user_id)
     fav_dog = User_dogFavorite(
         user_id=user_query.id, dogs_id=int(dogs_id))
+    db.session.add(My_dog)
+    db.session.commit()
+    response_body = {"msg": "Favorito agregado"}
+    return jsonify(response_body), 200
+
+
+@api.route('/user/<int:user_id>/addfavoritedog/<int:dogs_id>/', methods=['POST'])
+def add_FavDog(user_id, dogs_id):
+    user_query = User.query.get(user_id)
+    dogs_query = Dogs.query.get(dogs_id)
+    fav_dog = Favorites(
+        user_id=user_query.id, dogs_id=dogs_query.id)
+    print(fav_dog)
     db.session.add(fav_dog)
     db.session.commit()
     response_body = {"msg": "Favorito agregado"}
-    return jsonify(response_body), 200 """
+    return jsonify(response_body), 200
 
 
 @api.route('/sendEmail', methods=['POST'])

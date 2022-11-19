@@ -15,7 +15,7 @@ export const Login = () => {
   const handleClick = () => {
     actions.login(email, password).then((resp) => {
       if (resp) {
-        navigate("/favoritos");
+        navigate("/biblioteca");
         window.location.reload(false);
       }
     });
@@ -28,7 +28,6 @@ export const Login = () => {
       style={{ backgroundImage: `url(${imagen_login})`, height: "500px" }}
       className=" "
     >
-
       <div className=" pt-2">
         <h1 className="m-5 text-white">Login</h1>
         <div className="m-5">
@@ -72,7 +71,6 @@ export const Login = () => {
                 Registrarse
               </button>
             </Link>
-
           </div>
         </div>
         <div

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 7e165eae3a2c
+Revision ID: 2fae7beb7ba4
 Revises: 
-Create Date: 2022-11-04 03:59:46.972220
+Create Date: 2022-11-19 19:33:46.463708
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7e165eae3a2c'
+revision = '2fae7beb7ba4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,7 +21,9 @@ def upgrade():
     op.create_table('dogs',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('raza_dog', sa.String(length=120), nullable=False),
+    sa.Column('img_dog', sa.String(length=300), nullable=False),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('img_dog'),
     sa.UniqueConstraint('raza_dog')
     )
     op.create_table('question',
@@ -40,11 +42,35 @@ def upgrade():
     )
     op.create_table('answer',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('answer', sa.String(length=250), nullable=False),
+    sa.Column('answer1', sa.String(length=250), nullable=False),
+    sa.Column('answer2', sa.String(length=250), nullable=False),
+    sa.Column('answer3', sa.String(length=250), nullable=False),
+    sa.Column('answer4', sa.String(length=250), nullable=False),
+    sa.Column('answer5', sa.String(length=250), nullable=False),
     sa.Column('question_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['question_id'], ['question.id'], ),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('answer')
+    sa.UniqueConstraint('answer1'),
+    sa.UniqueConstraint('answer2'),
+    sa.UniqueConstraint('answer3'),
+    sa.UniqueConstraint('answer4'),
+    sa.UniqueConstraint('answer5')
+    )
+    op.create_table('favorites',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('dogs_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['dogs_id'], ['dogs.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('my_dog',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('dogs_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['dogs_id'], ['dogs.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('razas_dogs',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -114,25 +140,13 @@ def upgrade():
     sa.Column('hipoalergenica', sa.String(length=50), nullable=False),
     sa.Column('ladrador', sa.String(length=50), nullable=False),
     sa.Column('guardian', sa.String(length=50), nullable=False),
-    sa.Column('entre_otroPerros', sa.String(length=50), nullable=False),
+    sa.Column('entre_otroperros', sa.String(length=50), nullable=False),
     sa.Column('perro_familiar', sa.String(length=50), nullable=False),
     sa.Column('results_id', sa.Integer(), nullable=True),
     sa.Column('dog_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['dog_id'], ['dogs.id'], ),
     sa.ForeignKeyConstraint(['results_id'], ['results.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('adiestramiento'),
-    sa.UniqueConstraint('aseo'),
-    sa.UniqueConstraint('babeo'),
-    sa.UniqueConstraint('entre_otroPerros'),
-    sa.UniqueConstraint('experiencia'),
-    sa.UniqueConstraint('guardian'),
-    sa.UniqueConstraint('hipoalergenica'),
-    sa.UniqueConstraint('ladrador'),
-    sa.UniqueConstraint('paseos'),
-    sa.UniqueConstraint('perro_familiar'),
-    sa.UniqueConstraint('tamano'),
-    sa.UniqueConstraint('tiempo_paseo')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('resp__sabias_que',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -166,6 +180,8 @@ def downgrade():
     op.drop_table('results')
     op.drop_table('user_dog_favorite')
     op.drop_table('razas_dogs')
+    op.drop_table('my_dog')
+    op.drop_table('favorites')
     op.drop_table('answer')
     op.drop_table('user')
     op.drop_table('question')

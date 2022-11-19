@@ -3,10 +3,10 @@ import { Context } from "../store/appContext";
 import { store } from "../store/flux";
 import { Link } from "react-router-dom";
 
-export const Card_biblioteca = (props) => {
-  const [favorito, setFavorito] = useState(false);
+export const Card_favoritos = (props) => {
+  /* const [favorito, setFavorito] = useState(false); */
   const { store, actions } = useContext(Context);
-  const getFavorito = () => {
+  /* const getFavorito = () => {
     store.favoritos.filter((id) => {
       console.log(id);
       if (props.id === props.id) {
@@ -14,7 +14,7 @@ export const Card_biblioteca = (props) => {
       }
     });
   };
-  console.log(props);
+  console.log(props); */
   return (
     <div className="col">
       <div className="card m-2" style={{ width: "18rem", height: "405px" }}>
@@ -34,14 +34,14 @@ export const Card_biblioteca = (props) => {
               Ver mas...
             </Link>
             <button
-              onClick={() => {
+            /*  onClick={() => {
                 actions.setFavorito([...store.favoritos, { id: props.id }]);
                 console.log(store);
                 getFavorito();
               }}
-              className={favorito ? "btn btn-danger" : "btn btn-success"}
+              className={favorito ? "btn btn-danger" : "btn btn-success"} */
             >
-              Favorito
+              Mi Perro
             </button>
           </div>
         </div>

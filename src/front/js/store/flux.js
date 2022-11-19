@@ -19,12 +19,30 @@ const getState = ({ getStore, getActions, setStore }) => {
       raza: [],
       razaIndividual: [],
       razaIndividual2: [],
+      favoritos: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
+      /* setFavorito: (elementoNuevo) => {
+        fetch(
+          process.env.BACKEND_URL +
+            "/user/<int:user_id>/addfavoritedog/<int:dogs_id>/",
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(elementoNuevo),
+          }
+        )
+          .then((resp) => resp.json())
+          .then();
+        setStore({ favoritos: elementoNuevo });
+        console.log("Los favoritos son", elementoNuevo);
+      }, */
       login: async (email, password) => {
         const opts = {
           method: "POST",
@@ -101,12 +119,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.error(err));
       },
+
       loadSomeData: () => {
         fetch(process.env.BACKEND_URL + "/dogs")
           .then((resp) => resp.json())
           .then((resp) => {
             console.log(resp);
             setStore({ raza: resp.Usuarios });
+          })
+          .catch((err) => console.error(err));
+      },
+      favoritos_user: (id) => {
+        fetch(process.env.BACKEND_URL + "/favoritedogs/" + id)
+          .then((resp) => resp.json())
+          .then((resp) => {
+            console.log(resp);
+            setStore({ favoritos: resp.Usuarios });
           })
           .catch((err) => console.error(err));
       },

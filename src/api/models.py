@@ -65,7 +65,7 @@ class User_dogFavorite(db.Model):
         }
 
 
-class Favorites(db.Model):
+class My_dog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     dogs_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
@@ -85,6 +85,27 @@ class Favorites(db.Model):
             "user": self.user,
             "dogs": self.dogs,
 
+            # do not serialize the password, its a security breach
+        }
+
+
+class Favorites(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    dogs_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
+    user = db.relationship(User)
+    dogs = db.relationship(Dogs)
+
+    #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+
+    def __repr__(self):
+        return f'<Favorites {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "dogs_id": self.dogs_id,
             # do not serialize the password, its a security breach
         }
 # ---------------------------Dogs----------------------------

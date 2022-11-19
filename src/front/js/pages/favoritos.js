@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/favoritos.css";
-import { Card_biblioteca } from "../component/card_biblioteca";
+import { Card_favoritos } from "../component/card_favoritos";
 
 export const Favoritos = (props) => {
   const { store, actions } = useContext(Context);
@@ -17,14 +17,20 @@ export const Favoritos = (props) => {
             <h3>Mis razas favoritas</h3>
           </button>
         </div>
-        <div className="container-flex">
-          <Card_biblioteca />
+        <div className="container text-center">
+          <div class="row">
+            {store.raza.map((element, i) => {
+              return (
+                <Card_favoritos
+                  id={element.id}
+                  img_dog={element.img_dog}
+                  raza_dog={element.raza_dog}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
   );
-};
-
-Favoritos.propTypes = {
-  match: PropTypes.object,
 };
