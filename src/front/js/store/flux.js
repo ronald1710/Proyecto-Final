@@ -1,3 +1,5 @@
+import { createRoutesFromChildren } from "react-router-dom";
+
 const Swal = require("sweetalert2");
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -18,6 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       biblioteca: [],
       raza: [],
       razaIndividual: [],
+      favoritos: [],
       razaIndividual2: [],
     },
     actions: {
@@ -101,6 +104,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.error(err));
       },
+
+      add_favorito: async (id_user, id_dog) => {
+        let user_id = id_user;
+        let dog_id = id_dog;
+        console.log(user_id);
+        console.log(dog_id);
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/add_favorite/" + user_id + "/" + dog_id,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "aplication/json",
+              },
+            }
+          );
+          const data = await resp.json();
+          return data;
+        } catch (error) {
+          console.log("error al agregar Favorito", error);
+        }
+      },
+
       loadSomeData: () => {
         fetch(process.env.BACKEND_URL + "/dogs")
           .then((resp) => resp.json())

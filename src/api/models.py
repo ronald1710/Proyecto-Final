@@ -71,6 +71,8 @@ class Favorites(db.Model):
     dogs_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     user = db.relationship(User)
     dogs = db.relationship(Dogs)
+    # crear tabla de favoritos con estos mismos nombres y si presentan problemas
+    # sacamos las relationshps de linea 72 y 73
 
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
