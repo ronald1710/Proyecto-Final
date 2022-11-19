@@ -29,9 +29,12 @@ export const Card_biblioteca = (props) => {
             <Link
               to={`/biblioteca_individual/${props.id}`}
               relative="path"
-              className="btn btn-primary"
+              className="btn btn-primary m-2"
             >
               Ver mas...
+            </Link>
+            <Link to={``} relative="path" className="btn btn-danger m-2">
+              Me gusta!
             </Link>
           </div>
         </div>

@@ -25,6 +25,14 @@ export const Biblioteca_individual = (props) => {
         img_dog={store.razaIndividual?.img_dog}
         raza_dog={store.razaIndividual?.raza_dog}
         descripcion={store.razaIndividual2?.descripcion}
+        consejos={store.razaIndividual2?.consejos}
+        personalidad={store.razaIndividual2?.personalidad}
+        origen={store.razaIndividual2?.origen}
+        salud={store.razaIndividual2?.salud}
+        ejercicio={store.razaIndividual2?.ejercicio}
+        nutricion={store.razaIndividual2?.nutricion}
+        aseo={store.razaIndividual2?.aseo}
+        nino={store.razaIndividual2?.raza_nino}
       />
     </div>
   );

@@ -277,6 +277,11 @@ export const Buscador = (props) => {
           </select>
         </div>
       </div>
+      <div className="container text-center mt-4">
+        <button type="button" class="btn btn-primary">
+          Buscar tu mascota
+        </button>
+      </div>
     </div>
   );
 };
