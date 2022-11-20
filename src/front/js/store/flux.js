@@ -20,6 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       razaIndividual: [],
       razaIndividual2: [],
       favoritos: [],
+      favoritos2: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -130,11 +131,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((err) => console.error(err));
       },
       favoritos_user: (id) => {
-        fetch(process.env.BACKEND_URL + "/favoritedogs/" + id)
-          .then((resp) => resp.json())
-          .then((resp) => {
-            console.log(resp);
-            setStore({ favoritos: resp.Usuarios });
+        fetch(process.env.BACKEND_URL + "/favoritedogs/")
+          .then((respu) => respu.json())
+          .then((respu) => {
+            console.log(respu);
+            setStore({ favoritos2: respu.Usuarios });
           })
           .catch((err) => console.error(err));
       },

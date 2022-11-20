@@ -19,12 +19,12 @@ export const Favoritos = (props) => {
         </div>
         <div className="container text-center">
           <div class="row">
-            {store.raza.map((element, i) => {
+            {store.favoritos.map((element, i) => {
               return (
                 <Card_favoritos
                   id={element.id}
                   img_dog={element.img_dog}
-                  raza_dog={element.raza_dog}
+                  raza_dog={element.id}
                 />
               );
             })}
