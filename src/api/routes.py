@@ -68,15 +68,18 @@ def get_dog(dogs_id):
     return jsonify(dog.serialize()), 200
 
 
-""" @api.route('/user/<int:user_id>/addfavoritedog/<int:dogs_id>/', methods=['POST'])
+@api.route('/user/<int:user_id>/addfavoritedog/<int:answer_id>', methods=['POST'])
 def add_FavDog(user_id, dogs_id):
     user_query = User.query.get(user_id)
+    json = request.get_json()
+    userid1 = json.get("userid")
+    dogsid1 = json.get("dogsid")
     fav_dog = User_dogFavorite(
-        user_id=user_query.id, dogs_id=int(dogs_id))
+        user_id=user_query.id, dogs_id=int(dogs_id), userid=userid1, dogsid1=dogsid1)
     db.session.add(fav_dog)
     db.session.commit()
     response_body = {"msg": "Favorito agregado"}
-    return jsonify(response_body), 200 """
+    return jsonify(response_body), 200
 
 
 @api.route('/razas_dogs', methods=['GET'])
@@ -120,53 +123,77 @@ def get_sugerencia(user_id):
     user_answer = list(
         map(lambda answer: answer.serialize(), answer))
 
+    sabias = Sabias_que.query.filter().count()
+    print("cantidad de sabias que ", sabias)
     sugerencia = []
+    i = 1
+
     for x in user_answer:
-        sabias_que = Sabias_que.query.filter_by(answer_id=x["id"]).all()
-        result = list(map(lambda sabias_que: sabias_que.serialize(), sabias_que))
-        
-        respuesta = {}
-        if x["id"] == 1:
-            respuesta = {'experiencia':result[0]["experiencia"].__contains__(x['answer1'])}
-            a = 5
-            if a > 6:
-                sugerencia.append(respuesta)
-            print(a)     
-            break
-        elif x["id"] == 2:  
-            respuesta = {'adiestramiento':sabias_que[1]["adiestramiento"].__contains__(x['answer1'])}
-        elif x["id"] == 3:  
-            respuesta = {'paseos':result[2]["paseos"].__contains__(x['answer1'])}
-        elif x["id"] == 4:  
-            respuesta = {'tiempo_paseo':result[3]["tiempo_paseo"].__contains__(x['answer1'])}
-        elif x["id"] == 5:  
-            respuesta = {'tamano':result[4]["tamano"].__contains__(x['answer1'])}
-        elif x["id"] == 6:  
-            respuesta = {'babeo':result[5]["babeo"].__contains__(x['answer1'])}
-        elif x["id"] == 7:  
-            respuesta = {'aseo':result[6]["aseo"].__contains__(x['answer1'])}
-        elif x["id"] == 8:  
-            respuesta = {'hipoalergenico':result[7]["hipoalergenico"].__contains__(x['answer1'])}
-        elif x["id"] == 9:  
-            respuesta = {'ladrador':result[8]["ladrador"].__contains__(x['answer1'])}
-        elif x["id"] == 10:  
-            respuesta = {'guardian':result[9]["guardian"].__contains__(x['answer1'])}
-        elif x["id"] == 11:  
-            respuesta = {'entre_otroPerros':result[10]["entre_otroPerros"].__contains__(x['answer1'])}
-        elif x["id"] == 12:  
-            respuesta = {'perro_familiar':result[11]["perro_familiar"].__contains__(x['answer1'])}
-        
+       
+            sabias_que = Sabias_que.query.filter_by(answer_id=x["id"]).all()
+            print("Esto es valor de I ", i)
+            result = list(
+                map(lambda sabias_que: sabias_que.serialize(), sabias_que))
+            print("esto es el result", len(result))
+            respuesta = {}
+            
 
+            if x["id"] == 1:
+                    respuesta = {
+                        'experiencia': result[0]["experiencia"].__contains__(x['answer1'])}  
+                    """ a = 6
+                        if a >= 6:
+                            sugerencia.append(respuesta) """
+                    
+                    
+                    
+            """ elif x["id"] == 2:
+                    respuesta = {
+                        'adiestramiento': result[1]["adiestramiento"].__contains__(x['answer1'])}
 
-        sugerencia.append(respuesta)
+            elif x["id"] == 3:
+                    respuesta = {'paseos': result[2]
+                                ["paseos"].__contains__(x['answer1'])}
+            elif x["id"] == 4:
+                    respuesta = {
+                        'tiempo_paseo': result[3]["tiempo_paseo"].__contains__(x['answer1'])}
+            elif x["id"] == 5:
+                    respuesta = {'tamano': result[4]
+                                ["tamano"].__contains__(x['answer1'])}
+            elif x["id"] == 6:
+                    respuesta = {'babeo': result[5]
+                                ["babeo"].__contains__(x['answer1'])}
+            elif x["id"] == 7:
+                    respuesta = {'aseo': result[6]
+                                ["aseo"].__contains__(x['answer1'])}
+            elif x["id"] == 8:
+                    respuesta = {
+                        'hipoalergenico': result[7]["hipoalergenico"].__contains__(x['answer1'])}
+            elif x["id"] == 9:
+                    respuesta = {'ladrador': result[8]
+                                ["ladrador"].__contains__(x['answer1'])}
+            elif x["id"] == 10:
+                    respuesta = {'guardian': result[9]
+                                ["guardian"].__contains__(x['answer1'])}
+            elif x["id"] == 11:
+                    respuesta = {
+                        'entre_otroPerros': result[10]["entre_otroPerros"].__contains__(x['answer1'])}
+            elif x["id"] == 12:
+                    respuesta = {
+                        'perro_familiar': result[11]["perro_familiar"].__contains__(x['answer1'])}
+            else:
+                print("Fuera de rango", x["id"]) """
+
+            sugerencia.append(respuesta)
+            i+=1
 
     return jsonify(sugerencia), 200
 
 
 """ final_result = []
 for x in user_answer:
-    #sabias_que = Sabias_que.query.filter_by(answer_id=x.id).all()
-    #sabias = list(
+    # sabias_que = Sabias_que.query.filter_by(answer_id=x.id).all()
+    # sabias = list(
     #    map(lambda sabias_que: sabias_que.serialize(), sabias_que))
     respuesta = {} 
     if x["id"] == 1:
@@ -177,6 +204,7 @@ for x in user_answer:
     
     final_result.append(respuesta)
 print(final_result) """
+
 
 @api.route('/question/<int:question_id>', methods=['GET'])
 def get_questionid(question_id):
