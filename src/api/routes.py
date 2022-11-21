@@ -123,87 +123,27 @@ def get_sugerencia(user_id):
     user_answer = list(
         map(lambda answer: answer.serialize(), answer))
 
-    sabias = Sabias_que.query.filter().count()
-    print("cantidad de sabias que ", sabias)
-    sugerencia = []
-    i = 1
-
-    for x in user_answer:
-       
-            sabias_que = Sabias_que.query.filter_by(answer_id=x["id"]).all()
-            print("Esto es valor de I ", i)
-            result = list(
-                map(lambda sabias_que: sabias_que.serialize(), sabias_que))
-            print("esto es el result", len(result))
-            respuesta = {}
-            
-
-            if x["id"] == 1:
-                    respuesta = {
-                        'experiencia': result[0]["experiencia"].__contains__(x['answer1'])}  
-                    """ a = 6
-                        if a >= 6:
-                            sugerencia.append(respuesta) """
-                    
-                    
-                    
-            """ elif x["id"] == 2:
-                    respuesta = {
-                        'adiestramiento': result[1]["adiestramiento"].__contains__(x['answer1'])}
-
-            elif x["id"] == 3:
-                    respuesta = {'paseos': result[2]
-                                ["paseos"].__contains__(x['answer1'])}
-            elif x["id"] == 4:
-                    respuesta = {
-                        'tiempo_paseo': result[3]["tiempo_paseo"].__contains__(x['answer1'])}
-            elif x["id"] == 5:
-                    respuesta = {'tamano': result[4]
-                                ["tamano"].__contains__(x['answer1'])}
-            elif x["id"] == 6:
-                    respuesta = {'babeo': result[5]
-                                ["babeo"].__contains__(x['answer1'])}
-            elif x["id"] == 7:
-                    respuesta = {'aseo': result[6]
-                                ["aseo"].__contains__(x['answer1'])}
-            elif x["id"] == 8:
-                    respuesta = {
-                        'hipoalergenico': result[7]["hipoalergenico"].__contains__(x['answer1'])}
-            elif x["id"] == 9:
-                    respuesta = {'ladrador': result[8]
-                                ["ladrador"].__contains__(x['answer1'])}
-            elif x["id"] == 10:
-                    respuesta = {'guardian': result[9]
-                                ["guardian"].__contains__(x['answer1'])}
-            elif x["id"] == 11:
-                    respuesta = {
-                        'entre_otroPerros': result[10]["entre_otroPerros"].__contains__(x['answer1'])}
-            elif x["id"] == 12:
-                    respuesta = {
-                        'perro_familiar': result[11]["perro_familiar"].__contains__(x['answer1'])}
-            else:
-                print("Fuera de rango", x["id"]) """
-
-            sugerencia.append(respuesta)
-            i+=1
-
-    return jsonify(sugerencia), 200
-
-
-""" final_result = []
-for x in user_answer:
-    # sabias_que = Sabias_que.query.filter_by(answer_id=x.id).all()
-    # sabias = list(
-    #    map(lambda sabias_que: sabias_que.serialize(), sabias_que))
-    respuesta = {} 
-    if x["id"] == 1:
-            respuesta ={ 'experiencia': sabias[0]["experiencia"].__contains__(x['answer1'])}
-    elif x["id"] == 2:
-            respuesta= {'adiestramiento': False}
-     
     
-    final_result.append(respuesta)
-print(final_result) """
+    sugerencias = []
+    columns = ['experiencia', 'adiestramiento', 'paseos', 'tiempo_paseo', 'tamano', 'babeo',
+               'aseo', 'hipoalergenica', 'ladrador', 'guardian', 'entre_otroPerros', 'perro_familiar']
+
+    sabias_que = Sabias_que.query.filter_by().all()
+    result = list(
+        map(lambda sabias_que: sabias_que.serialize(), sabias_que))
+
+    a = 0
+    for res in result: 
+        respuesta = {}
+        for x in user_answer:
+            columnIndex = x["id"] - 1
+            if len(columns) > columnIndex:
+                colName = columns[columnIndex]
+                respuesta[colName] = res[colName].__contains__(x['answer1'])   
+        sugerencias.append(respuesta)
+
+    
+    return jsonify(sugerencias), 200
 
 
 @api.route('/question/<int:question_id>', methods=['GET'])
