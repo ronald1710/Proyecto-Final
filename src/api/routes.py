@@ -132,7 +132,7 @@ def get_sugerencia(user_id):
     result = list(
         map(lambda sabias_que: sabias_que.serialize(), sabias_que))
 
-    a = 0
+    
     for res in result: 
         respuesta = {}
         for x in user_answer:
