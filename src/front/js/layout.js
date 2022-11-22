@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { Biblioteca } from "./pages/biblioteca";
+import { Biblioteca_individual } from "./pages/biblioteca_individual";
 import { Login } from "./pages/login";
 import { Favoritos } from "./pages/favoritos";
 import { Buscador } from "./pages/buscador";
@@ -12,6 +13,8 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Signup } from "./pages/signup";
+import { Forgot_password } from "./pages/forgotPassword";
+import { Restore_password } from "./pages/restorePassword";
 
 //create your first component
 const Layout = () => {
@@ -27,14 +30,28 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<Biblioteca />} path="/biblioteca" />
+            <Route
+              element={<Biblioteca_individual />}
+              exact
+              path="/biblioteca_individual/:theid"
+            />
             <Route element={<Login />} path="/login" />
+            <Route element={<Forgot_password />} path="/forgotpassword" />
+            <Route
+              element={<Restore_password />}
+              path="/restorepassword/:accesstoken"
+            />
             <Route element={<Signup />} path="/signup" />
             <Route
-              element={localStorage.getItem("token") ? <Favoritos /> : <Home />}
+              element={
+                localStorage.getItem("token") ? <Favoritos /> : <Signup />
+              }
               path="/favoritos"
             />
             <Route
-              element={localStorage.getItem("token") ? <Buscador /> : <Home />}
+              element={
+                localStorage.getItem("token") ? <Buscador /> : <Signup />
+              }
               path="/buscador"
             />
             <Route element={<h1>Not found!</h1>} />

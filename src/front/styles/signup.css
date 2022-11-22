@@ -3,5 +3,27 @@
   background-size: 100% 100%;
 }
 #div_signup {
-  width: 50%;
+  margin-top: 30px;
+  background: #cbcccd;
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+  margin-right: 50px;
+  box-shadow: 17px 17px 15px gray;
+}
+#div_img_signup {
+  margin-top: 30px;
+  margin-left: 80px;
+  height: 300px;
+}
+#div_contenido {
+  margin-top: 50px;
+}
+#div_principal {
+  height: 420px;
+  width: 100%;
+}
+#div_perro {
+  margin-top: 30px;
+  margin-left: 50px;
 }

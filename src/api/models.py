@@ -30,8 +30,8 @@ class User(db.Model):
 
 class Dogs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    raza_dog = db.Column(db.String(120),unique=True, nullable=False)
-    img_dog = db.Column(db.String(300),unique=True, nullable=False)
+    raza_dog = db.Column(db.String(120), unique=True, nullable=False)
+    img_dog = db.Column(db.String(300), unique=True, nullable=False)
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
@@ -53,7 +53,6 @@ class User_dogFavorite(db.Model):
     dogs_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     user = db.relationship(User)
     dogs = db.relationship(Dogs)
-    
 
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
@@ -64,6 +63,30 @@ class User_dogFavorite(db.Model):
         return {
             "id": self.id,
             "name": self.name,
+
+            # do not serialize the password, its a security breach
+        }
+
+
+class Favorites(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    dogs_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
+    user = db.relationship(User)
+    dogs = db.relationship(Dogs)
+
+    #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+
+    def __repr__(self):
+        return f'<Favorites {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "dogs_id": self.dogs_id,
+            "user": self.user,
+            "dogs": self.dogs,
 
             # do not serialize the password, its a security breach
         }
@@ -83,7 +106,6 @@ class Razas_dogs(db.Model):
     raza_nino = db.Column(db.String(1000), nullable=False)
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     dog = db.relationship(Dogs)
-    
 
     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
@@ -125,12 +147,9 @@ class Question(db.Model):
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+
     answer1 = db.Column(db.String(100), nullable=False)# Falta hacerlo multilinestring
-    #answer2 = db.Column(db.String(50))# Falta hacerlo multilinestring
-    #answer3 = db.Column(db.String(50))# Falta hacerlo multilinestring
-    #answer4 = db.Column(db.String(50))# Falta hacerlo multilinestring
-    #answer5 = db.Column(db.String(50))# Falta hacerlo multilinestring
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+
     question_id = db.Column(db.Integer, db.ForeignKey("question.id"))
     question = db.relationship(Question)
     user = db.relationship(User)
@@ -143,6 +162,10 @@ class Answer(db.Model):
         return {
             "id": self.id,
             "answer1": self.answer1,
+
+
+
+
             # do not serialize the password, its a security breach
         }
 
@@ -191,6 +214,7 @@ class Results(db.Model):
 # ---------------------------Logica----------------------------
 class Sabias_que(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+
     experiencia = db.Column(db.String(50))
     adiestramiento = db.Column(db.String(50))
     paseos = db.Column(db.String(50))
@@ -204,10 +228,10 @@ class Sabias_que(db.Model):
     entre_otroPerros = db.Column(db.String(50))
     perro_familiar = db.Column(db.String(50))
     answer_id = db.Column(db.Integer, db.ForeignKey("answer.id"))
+
     dog_id = db.Column(db.Integer, db.ForeignKey("dogs.id"))
     results = db.relationship(Answer)
     dogs = db.relationship(Dogs)
-    
 
     def __repr__(self):
         return f'<Sabias_que {self.id}>'
@@ -225,10 +249,10 @@ class Sabias_que(db.Model):
             "hipoalergenica": self.hipoalergenica,
             "ladrador": self.ladrador,
             "guardian": self.guardian,
+
             "entre_otroPerros": self.entre_otroPerros,
             "perro_familiar": self.perro_familiar,
             "dog_id": self.dog_id
-            
 
             # do not serialize the password, its a security breach
         }
@@ -253,7 +277,7 @@ class Resp_SabiasQue(db.Model):
     sabiasque_id = db.Column(db.Integer, db.ForeignKey("sabias_que.id"))
     user = db.relationship(User)
     dogs = db.relationship(Dogs)
-    sabiasque= db.relationship(Sabias_que)
+    sabiasque = db.relationship(Sabias_que)
 
     def __repr__(self):
         return f'<Resp_SabiasQue {self.id}>'

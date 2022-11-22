@@ -16,6 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         },
       ],
       biblioteca: [],
+
       question: [
         {
           question1: "¿Has tenido perro alguna vez?"
@@ -39,6 +40,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           answer4: "Tengo experiencia con el adiestramiento y me siento cómodo con cualquier raza"
         }
       ]
+
+      raza: [],
+      razaIndividual: [],
+      razaIndividual2: [],
+
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -95,6 +101,21 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((resp) => resp.json())
           .then(() => {
             Swal.fire("Registro exitoso", "Gracias por elegirnos", "success");
+            window.location.href = "/login";
+            return true;
+          });
+      },
+      reset_password: (body) => {
+        fetch(process.env.BACKEND_URL + "/resetpassword", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        })
+          .then((resp) => resp.json())
+          .then(() => {
+            Swal.fire("Registro exitoso", "Gracias por elegirnos", "success");
           });
       },
       loadSomeData: () => {
@@ -103,6 +124,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((resp) => {
             console.log(resp);
             setStore({ biblioteca: resp.Usuarios });
+          })
+          .catch((err) => console.error(err));
+      },
+      loadSomeData: () => {
+        fetch(process.env.BACKEND_URL + "/dogs")
+          .then((resp) => resp.json())
+          .then((resp) => {
+            console.log(resp);
+            setStore({ raza: resp.Usuarios });
           })
           .catch((err) => console.error(err));
       },
@@ -119,6 +149,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         //reset the global store
         setStore({ demo: demo });
+      },
+      informacionIndividualDogs: (id) => {
+        fetch(process.env.BACKEND_URL + "/dogs/" + id)
+          .then((resp) => resp.json())
+          .then((resp) => {
+            setStore({ razaIndividual: resp });
+            fetch(process.env.BACKEND_URL + "/razas_dogs/" + id)
+              .then((resp2) => resp2.json())
+              .then((data) => {
+                //si todo sabe bien sale la info
+                setStore({ razaIndividual2: data });
+              });
+          })
+          .catch((err) => console.error(err));
       },
     },
   };

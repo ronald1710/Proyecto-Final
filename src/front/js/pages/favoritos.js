@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/favoritos.css";
-import { Card } from "../component/cards";
+import { Card_biblioteca } from "../component/card_biblioteca";
 
 export const Favoritos = (props) => {
   const { store, actions } = useContext(Context);
@@ -18,7 +18,7 @@ export const Favoritos = (props) => {
           </button>
         </div>
         <div className="container-flex">
-          <Card />
+          <Card_biblioteca />
         </div>
       </div>
     </div>
