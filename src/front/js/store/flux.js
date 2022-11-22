@@ -16,9 +16,35 @@ const getState = ({ getStore, getActions, setStore }) => {
         },
       ],
       biblioteca: [],
+
+      question: [
+        {
+          question1: "¿Has tenido perro alguna vez?"
+        },
+        {
+          question2: "¿Que nivel de adiestramiento estás dispuesto a ofrecerle?"
+        }
+
+    ],
+      answer: [
+        {
+          answer1: "No importa", 
+          answer2: "No, este será mi primer perro y tengo ganas de aprender",
+          answer3: "He cuidado perros antes, asi que tengo algo de experiencia", 
+          answer4: "Si. Soy un dueño con mucha experiencia" 
+        },
+        {
+          answer1: "No importa",
+          answer2: "Preferiria que no necesitara mucho adiestramiento",
+          answer3: "Me gusta las razas que necesitan algo de adiestramiento", 
+          answer4: "Tengo experiencia con el adiestramiento y me siento cómodo con cualquier raza"
+        }
+      ]
+
       raza: [],
       razaIndividual: [],
       razaIndividual2: [],
+
     },
     actions: {
       // Use getActions to call a function within a fuction
